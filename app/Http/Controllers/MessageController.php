@@ -6,6 +6,7 @@ use App\Events\MessagePublished;
 use App\Hashtag;
 use App\Setting;
 use App\User;
+use App\Group;
 use Carbon\Carbon;
 use Cmgmyr\Messenger\Models\Message;
 use Cmgmyr\Messenger\Models\Participant;
@@ -41,11 +42,14 @@ class MessageController extends Controller
         } else {
             $trending_tags = '';
         }
-
+        $suggested_users = suggestedUsers();
+        $suggested_groups = suggestedGroups();
+        $suggested_pages = suggestedPages();
+        $groups = Group::all();
         $theme = Theme::uses(Setting::get('current_theme', 'default'))->layout('default');
         $theme->setTitle(trans('common.messages').' | '.Setting::get('site_title').' | '.Setting::get('site_tagline'));
 
-        return $theme->scope('messenger.index', compact('trending_tags'))->render();
+        return $theme->scope('messenger.index', compact('trending_tags', 'groups', 'suggested_users', 'active_announcement', 'suggested_groups', 'suggested_pages'))->render();
     }
 
     /**
