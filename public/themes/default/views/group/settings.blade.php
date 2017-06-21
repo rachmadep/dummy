@@ -26,7 +26,7 @@
 										{{ '@'.$timeline->username }}
 									</a>
 								</h4>
-							</div>      
+							</div>
 						</div><!-- /avatar-profile -->
 					</div>
 				</div><!-- /panel-body -->
@@ -43,7 +43,7 @@
 					<div class="socialite-form">
 						@include('flash::message')
 
-						<form action="{{ url('/'.$username.'/group-settings/general') }}" method="POST">							
+						<form action="{{ url('/'.$username.'/group-settings/general') }}" method="POST">
 
 							{{ csrf_field() }}
 
@@ -80,7 +80,7 @@
 										<input type="radio" name="type" id="optionsRadios1" value="open" checked>
 										@else
 										<input type="radio" name="type" id="optionsRadios1" value="open">
-										@endif	
+										@endif
 										<i class="fa fa-globe"></i> {{ trans('common.open_group') }}
 										<p>{{ trans('messages.radio_open_group') }}</p>
 									</label>
@@ -91,7 +91,7 @@
 										<input type="radio" name="type" id="optionsRadios2" value="closed" checked>
 										@else
 										<input type="radio" name="type" id="optionsRadios2" value="closed">
-										@endif	
+										@endif
 										<i class="fa fa-lock"></i> {{ trans('common.closed_group') }}
 										<p>{{ trans('messages.radio_closed_group') }}</p>
 									</label>
@@ -102,13 +102,13 @@
 										<input type="radio" name="type" id="optionsRadios3" value="secret" checked>
 										@else
 										<input type="radio" name="type" id="optionsRadios3" value="secret">
-										@endif	
+										@endif
 										<i class="fa fa-shield"></i> {{ trans('common.secret_group') }}
 										<p>{{ trans('messages.radio_secret_group') }}</p>
 									</label>
-								</div>																					
+								</div>
 							</fieldset>
-							
+
 							<fieldset class="form-group">
 								{{ Form::label('member_privacy', trans('common.label_group_member_privacy')) }}
 								{{ Form::select('member_privacy', array('members' => trans('common.members'), 'only_admins' => trans('common.admins')), $group_details->member_privacy, array('class' => 'form-control col-sm-6')) }}
@@ -118,9 +118,9 @@
 								{{ Form::label('post_privacy', trans('common.label_group_timeline_post_privacy')) }}
 								{{ Form::select('post_privacy', array('members' => trans('common.members'), 'only_admins' => trans('common.admins')), $group_details->post_privacy, array('class' => 'form-control col-sm-6')) }}
 							</fieldset>
-							
 
-							
+
+
 							<div class="pull-right">
 								{{ Form::submit(trans('common.update_group'), ['class' => 'btn btn-success']) }}
 							</div>
@@ -130,7 +130,7 @@
 					</div><!-- /socialite form -->
 				</div>
 			</div><!-- /panel -->
-			
+
 		</div>
 	</div><!-- /row -->
 </div>

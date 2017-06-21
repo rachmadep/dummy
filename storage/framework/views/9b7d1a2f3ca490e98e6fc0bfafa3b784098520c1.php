@@ -22,7 +22,7 @@
 									<img v-bind:src="conversation.user.avatar" alt="images">
 								</div>
 								<div class="media-body">
-									<h4 class="media-heading">{{ conversation.user.name }}</h4>
+									<h4 class="media-heading">@{{ conversation.user.username }}</h4>
 									<span class="pull-right active-ago" v-if="message">
 										<time class="microtime" datetime="{{ message.created_at }}" title="{{ message.created_at }}">
                                             {{ message.created_at }}

@@ -31,3 +31,6 @@
 .chat-box .chat-box-header .pull-left {
     text-transform: none;
 }
+.following-group .list-group-item .media .media-body .media-heading {
+    text-transform: none;
+}

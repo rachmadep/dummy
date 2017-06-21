@@ -13,6 +13,8 @@
 
 
         <title><?php echo e(Theme::get('title')); ?></title>
+        <link rel="stylesheet" href="themes/default/assets/css/style2.css">
+
 
         <?php echo Theme::asset()->styles(); ?>
 
@@ -61,7 +63,7 @@
                 </div><!-- /row -->
             </div>
         </div><!-- /amin-content -->
-        
+
         <?php echo Theme::partial('footer'); ?>
 
         <script>

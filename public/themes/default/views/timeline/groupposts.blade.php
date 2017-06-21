@@ -13,14 +13,16 @@
 					</div>
 
 					<div class="col-md-8">
-						@if($timeline->type == "group")						
+						@if($timeline->type == "group")
 							@if(($group->post_privacy == "only_admins" && $group->is_admin(Auth::user()->id)) || ($group->post_privacy == "members" && Auth::user()->get_group($group->id)->pivot->status == 'approved'))
-								{!! Theme::partial('create-post',compact('timeline')) !!}			
+								{!! Theme::partial('create-post',compact('timeline')) !!}
+							@else
+								{!! Theme::partial('create-post',compact('timeline')) !!}
 							@endif
-						@endif	
+						@endif
 
 						<div class="timeline-posts">
-							
+
 							@if($posts->count() > 0)
 								@foreach($posts as $post)
 									{!! Theme::partial('post',compact('post','timeline','next_page_url')) !!}
@@ -49,4 +51,3 @@
 		</div>
 	</div>
 </div><!-- /container -->
-
