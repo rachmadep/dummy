@@ -873,7 +873,7 @@ class TimelineController extends AppBaseController
             foreach ($users as $user) {
                 if ($user->id != Auth::user()->id) {
                     //Notify the user for page like
-                  Notification::create(['user_id' => $user->id, 'timeline_id' => $request->timeline_id, 'notified_by' => Auth::user()->id, 'description' => Auth::user()->name.' joined your group', 'type' => 'join_group']);
+                  Notification::create(['user_id' => $user->id, 'timeline_id' => $request->timeline_id, 'notified_by' => Auth::user()->id, 'description' => '@'.Auth::user()->username.' joined your group', 'type' => 'join_group']);
                 }
 
                 if ($group->is_admin($user->id)) {
@@ -896,7 +896,6 @@ class TimelineController extends AppBaseController
             foreach ($users as $user) {
                 if ($user->id != Auth::user()->id) {
                     //Notify the user for page like
-                  Notification::create(['user_id' => $user->id, 'timeline_id' => $request->timeline_id, 'notified_by' => Auth::user()->id, 'description' => Auth::user()->name.' unjoined your group', 'type' => 'unjoin_group']);
                 }
             }
 
@@ -917,7 +916,7 @@ class TimelineController extends AppBaseController
             foreach ($users as $user) {
                 if (Auth::user()->id != $user->id) {
                     //Notify the user for page like
-                  Notification::create(['user_id' => $user->id, 'timeline_id' => $request->timeline_id, 'notified_by' => Auth::user()->id, 'description' => Auth::user()->name.' requested to join your group', 'type' => 'group_join_request']);
+                  Notification::create(['user_id' => $user->id, 'timeline_id' => $request->timeline_id, 'notified_by' => Auth::user()->id, 'description' => '@'.Auth::user()->username.' requested to join your group', 'type' => 'group_join_request']);
                 }
             }
 
@@ -945,7 +944,7 @@ class TimelineController extends AppBaseController
             $user->followers()->attach(Auth::user()->id, ['status' => 'pending']);
 
             //Notify the user for page like
-            Notification::create(['user_id' => $user->id, 'timeline_id' => Auth::user()->timeline_id, 'notified_by' => Auth::user()->id, 'description' => Auth::user()->name.' requested you to follow', 'type' => 'follow_requested']);
+            Notification::create(['user_id' => $user->id, 'timeline_id' => Auth::user()->timeline_id, 'notified_by' => Auth::user()->id, 'description' => '@'.Auth::user()->username.' requested you to follow', 'type' => 'follow_requested']);
 
             return response()->json(['status' => '200', 'followrequest' => true, 'message' => 'successfully sent user follow request']);
         } else {
@@ -973,7 +972,7 @@ class TimelineController extends AppBaseController
                 $users = $page->users()->get();
                 foreach ($users as $user) {
                     //Notify the user for page like
-                Notification::create(['user_id' => $user->id, 'timeline_id' => $request->timeline_id, 'notified_by' => Auth::user()->id, 'description' => Auth::user()->name.' liked your page', 'type' => 'like_page']);
+                Notification::create(['user_id' => $user->id, 'timeline_id' => $request->timeline_id, 'notified_by' => Auth::user()->id, 'description' => '@'.Auth::user()->username.' liked your page', 'type' => 'like_page']);
 
                     if ($page->is_admin($user->id)) {
                         $page_admin = User::find($user->id);
@@ -997,7 +996,6 @@ class TimelineController extends AppBaseController
                 $users = $page->users()->get();
                 foreach ($users as $user) {
                     //Notify the user for page unlike
-                Notification::create(['user_id' => $user->id, 'timeline_id' => $request->timeline_id, 'notified_by' => Auth::user()->id, 'description' => Auth::user()->name.' unliked your page', 'type' => 'unlike_page']);
                 }
             }
 
@@ -1504,7 +1502,6 @@ class TimelineController extends AppBaseController
         if ($chkUser_exists) {
             if (Auth::user()->id != $request->user_id) {
                 //Notify the user for accepting group's join request
-            Notification::create(['user_id' => $request->user_id, 'timeline_id' => $group->timeline_id, 'notified_by' => Auth::user()->id, 'description' => Auth::user()->name.' removed you from the group', 'type' => 'remove_group_member']);
             }
 
             return response()->json(['status' => '200', 'deleted' => true, 'message' => 'Member successfully removed from group']);
@@ -1535,7 +1532,6 @@ class TimelineController extends AppBaseController
         if ($chkUser_exists) {
             if (Auth::user()->id != $request->user_id) {
                 //Notify the user for accepting page's join request
-            Notification::create(['user_id' => $request->user_id, 'timeline_id' => $page->timeline_id, 'notified_by' => Auth::user()->id, 'description' => Auth::user()->name.' removed you from the page', 'type' => 'remove_page_member']);
             }
 
             return response()->json(['status' => '200', 'deleted' => true, 'message' => 'Member successfully removed from page']);
@@ -1557,7 +1553,7 @@ class TimelineController extends AppBaseController
             if ($group_user) {
 
                 //Notify the user for accepting group's join request
-                Notification::create(['user_id' => $request->user_id, 'timeline_id' => $group->timeline_id, 'notified_by' => Auth::user()->id, 'description' => Auth::user()->name.' accepted your join request', 'type' => 'accept_group_join']);
+                Notification::create(['user_id' => $request->user_id, 'timeline_id' => $group->timeline_id, 'notified_by' => Auth::user()->id, 'description' => '@'.Auth::user()->username.' accepted your join request', 'type' => 'accept_group_join']);
             }
 
             Flash::success('Request Accepted');
@@ -1576,7 +1572,6 @@ class TimelineController extends AppBaseController
             if ($group_user) {
 
               //Notify the user for rejected group's join request
-                Notification::create(['user_id' => $request->user_id, 'timeline_id' => $group->timeline_id, 'notified_by' => Auth::user()->id, 'description' => Auth::user()->name.' rejected your join request', 'type' => 'reject_group_join']);
             }
 
             Flash::success('Request Rejected');
