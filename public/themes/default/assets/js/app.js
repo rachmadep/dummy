@@ -14,25 +14,25 @@ $(function () {
     //     });
     //     return this;
     // };
-        
+
     // show users modal
     $('body').on('click','.show-users-modal',function(e){
         e.preventDefault();
         // $(this).tooltip('hide');
 
         $.post(SP_source() + 'ajax/get-users-modal',{user_ids: $(this).data('users'), heading: $(this).data('heading')}, function(responseText) {
-           if(responseText.status == 200) { 
+           if(responseText.status == 200) {
                $('.modal-content').html(responseText.responseHtml);
            }
          });
 
         $('#usersModal').modal('show');
-    }); 
+    });
 
     $('body').on('click','.edit-post',function(e){
         e.preventDefault();
         $.post(SP_source() + 'ajax/edit-post',{post_id: $(this).data('post-id'),}, function(responseText) {
-           if(responseText.status == 200) { 
+           if(responseText.status == 200) {
                $('.modal-content').html(responseText.data);
            }
         });
@@ -40,7 +40,7 @@ $(function () {
         setTimeout(function(){
           jQuery("time.timeago").timeago();
         },100);
-    }); 
+    });
 
     $('body').on('click','.btn-delete-user',function(){
         if(confirm('are you sure to delete?'))
@@ -96,7 +96,7 @@ $(function () {
               $('[name="soundcloud_id"]').val('');
               $('[name="soundcloud_title"]').val('');
               $('[name="user_tags[]"]').val('');
-              $('.user-tags').val('');    
+              $('.user-tags').val('');
               $('.user-tag-names').empty('');
               emojify.run();
               hashtagify();
@@ -130,8 +130,8 @@ $(function () {
         $('.user-tags-added').slideToggle();
 
     });
-    
-    
+
+
 
     // Toggle music input in create post form
     $('#musicUpload').on('click',function(e){
@@ -157,9 +157,9 @@ $(function () {
                   $('.emoticons-wrapper').html(data.data);
                   emojify.run();
                   emoticonButton.addClass('loaded-emoji')
-          });  
+          });
         }
-        
+
         $('.emoticons-wrapper').slideToggle();
     });
 
@@ -174,7 +174,7 @@ $(function () {
     //     {
     //         $('.users-results-wrapper').html('<div class="list-group user-results"><i class="fa fa-spinner fa-pulse"></i> Fetching Sound Cloud results...</div>');
     //     }
-        
+
     //     $.get( SP_source() + 'ajax/get-users-mentions' , { query: $('.user-tags').val() , csrf_token: $('[name="csrf_token"]').attr('content') })
     //         .done(function( data ) {
     //             $('.user-results').html('');
@@ -233,7 +233,7 @@ $(function () {
       $.post( SP_source() + 'ajax/get-soundcloud-results' , { q: $('#soundCloudText').val() , csrf_token: $('[name="csrf_token"]').attr('content') })
         .done(function( responseText ) {
           if(responseText.status == 200)
-          { 
+          {
             music_addon.find('.fa-music').removeClass('fa-spinner fa-spin');
             $('.soundcloud-results').html('');
             var soundCloud_results = jQuery.parseJSON(responseText.data);
@@ -266,13 +266,13 @@ $(function () {
               .map(function(){return $(this).val();}).get();
         if(values.length <= 1)
         {
-            $('.user-tags-added').find('.user-tag-names').append('<a href="#">' + $(this).data('user-name')  + '</a>');    
+            $('.user-tags-added').find('.user-tag-names').append('<a href="#">' + $(this).data('user-name')  + '</a>');
         }
         else
         {
-            $('.user-tags-added').find('.user-tag-names').append(', <a href="#">' + $(this).data('user-name')  + '</a>');    
+            $('.user-tags-added').find('.user-tag-names').append(', <a href="#">' + $(this).data('user-name')  + '</a>');
         }
-        
+
 
     });
 
@@ -326,7 +326,7 @@ $(function () {
     // Follow/Requested switching by clcking on follow
     $('.follow-user-confirm').on('click',function(e){
       e.preventDefault();
-      join_btn = $(this).closest('.follow-links');      
+      join_btn = $(this).closest('.follow-links');
       input_ids = $(this).data('timeline-id').split('-');
       timeline_id = input_ids[0];
       follow_status = input_ids[1];
@@ -359,7 +359,7 @@ $(function () {
           if (data.joinrequest == true) {
             join_btn.find('.join').parent().addClass('hidden');
             join_btn.find('.joinrequest').parent().removeClass('hidden');
-          } else if(data.join == true) {                
+          } else if(data.join == true) {
             join_btn.find('.joined').parent().addClass('hidden');
             join_btn.find('.join').parent().removeClass('hidden');
           }else{
@@ -407,12 +407,12 @@ $(function () {
 
 //Accept follow request through join request tab in close group
     $('.accept-follow').on('click',function(e){
-      e.preventDefault();           
+      e.preventDefault();
 
       accept_btn = $(this).closest('.follow-links');
       $.post(SP_source() + 'ajax/follow-accept', {user_id: $(this).data('user-id')}, function(data) {
        if (data.status == 200) {
-         if (data.accepted == true) {          
+         if (data.accepted == true) {
           accept_btn.find('.accept').closest('.holder').slideToggle();
          }
        }
@@ -422,12 +422,12 @@ $(function () {
 
   //Reject follow user request through join request tab in close group
  $('.reject-follow').on('click',function(e){
-      e.preventDefault();           
+      e.preventDefault();
 
       reject_btn = $(this).closest('.follow-links');
       $.post(SP_source() + 'ajax/follow-reject', {user_id: $(this).data('user-id')}, function(data) {
        if (data.status == 200) {
-         if (data.rejected == true) {          
+         if (data.rejected == true) {
           reject_btn.find('.reject').closest('.holder').slideToggle();
          }
        }
@@ -461,7 +461,7 @@ $(function () {
       e.preventDefault();
       input_ids = $(this).data('user-id').split('-');
       user_id = input_ids[0];
-      page_id = input_ids[1];      
+      page_id = input_ids[1];
       user_status = input_ids[2];
 
       add_btn = $(this).closest('.follow-links');
@@ -491,18 +491,18 @@ $(function () {
      });
     });
 
-    //Manage report user request 
+    //Manage report user request
     $('.manage-report').on('click',function(e){
       e.preventDefault();
       post_id = $(this).data('post-id');
-      
+
       report_btn = $(this).closest('.list-inline');
       $.post(SP_source() + 'ajax/report-post', {post_id: post_id}, function(data) {
        if (data.status == 200) {
          if (data.reported == true) {
-           //report_btn.find('.report').closest('.holder').slideToggle();           
+           //report_btn.find('.report').closest('.holder').slideToggle();
            $('#post'+post_id).slideToggle();
-           notify('You have successfully reported the page');           
+           notify('You have successfully reported the page');
          }
        }
      });
@@ -584,7 +584,7 @@ $(function () {
       sharepost_btn = $(this).closest('.list-inline');
       $.post(SP_source() + 'ajax/share-post', {post_id: post_id}, function(data) {
          if (data.status == 200) {
-             if (data.shared == true) {              
+             if (data.shared == true) {
                 sharepost_btn.find('.share').parent().addClass('hidden');
                 sharepost_btn.find('.shared').parent().removeClass('hidden');
                 $('.list-inline').find('.share1-'+post_id).parent().addClass('hidden');
@@ -699,7 +699,7 @@ $(function () {
        }
      });
 
-     }); 
+     });
 
      //Removing member from page
     $(document).on('click','.remove-pagemember',function(e){
@@ -734,7 +734,7 @@ $(function () {
        }
      });
 
-     });  
+     });
 
 
     //Delete Page  the timeline user  by  logged user
@@ -770,7 +770,7 @@ $(function () {
       e.preventDefault();
       notify_btn = $(this).closest('.list-inline');
       $.post(SP_source() + 'ajax/notify-user', {post_id: $(this).data('post-id')}, function(data) {
-       if (data.status == 200) {        
+       if (data.status == 200) {
          if (data.notified == true) {
            notify_btn.find('.notify').parent().addClass('hidden');
            notify_btn.find('.unnotify').parent().removeClass('hidden');
@@ -811,11 +811,11 @@ $(function () {
                     }
                     else
                     {
-                        $(commentTag).append('<li>' + 
-                                                '<div class="comment-replies" style="">' + 
-                                                    ' <ul class="list-unstyled comment-replys">' + 
-                                                    '</ul>' + 
-                                                '</div>' + 
+                        $(commentTag).append('<li>' +
+                                                '<div class="comment-replies" style="">' +
+                                                    ' <ul class="list-unstyled comment-replys">' +
+                                                    '</ul>' +
+                                                '</div>' +
                                             '</li>');
                         $(commentTag).addClass('has-replies');
                     }
@@ -909,7 +909,7 @@ $(function () {
                  notify(responseText.message,'warning');
              }
          }
-     }); 
+     });
 
 
     $('form.create-album-form').ajaxForm({
@@ -918,14 +918,14 @@ $(function () {
          beforeSend: function() {
          },
 
-      
+
          success: function(responseText) {
 
              if (responseText.status == 200) {
-                
+
              }
              else {
-                
+
              }
          }
      });
@@ -970,10 +970,10 @@ $(function () {
                 /@([a-zA-Z0-9]+)/g,
                 '<a class="hashtag" href="' + SP_source() + '$1">@$1</a>'
             ));
-        });    
+        });
     }
     mentionify();
-    
+
 
 
 
@@ -1066,7 +1066,7 @@ $(function () {
            alert("Pls select only images");
          }
        });
-        
+
         $(document).on('change','.album-images-upload',function(e){
          e.preventDefault();
 
@@ -1089,11 +1089,11 @@ $(function () {
                var reader = new FileReader();
                reader.onload = function(e) {
 
-                image_holder.append('<div class="col-md-4 album-images">' + 
-                                    '<div class="album">' + 
-                                        '<img src="' + e.target.result + '" alt="images">' + 
-                                        '<a class="btn btn-remove"><i class="fa fa-times" aria-hidden="true"></i></a>' + 
-                                    '</div>' + 
+                image_holder.append('<div class="col-md-4 album-images">' +
+                                    '<div class="album">' +
+                                        '<img src="' + e.target.result + '" alt="images">' +
+                                        '<a class="btn btn-remove"><i class="fa fa-times" aria-hidden="true"></i></a>' +
+                                    '</div>' +
                                     '</div>');
 
                  // $("<img />", {
@@ -1118,9 +1118,9 @@ $(function () {
 
        $('#navbar-search').selectize({
            valueField: 'username',
-           labelField: 'name',
+           labelField: 'username',
            optgroupField: 'type',
-           searchField: 'name',
+           searchField: 'username',
            optgroups: [
                {value: 'user', label: 'Users'},
                {value: 'group', label: 'Groups'},
@@ -1173,7 +1173,7 @@ $(function () {
 
              return '<div class="media big-search-dropdown">' + photo_content +
                '<div class="media-body">' +
-                 '<h4 class="media-heading">' + escape(item.name) + verified + ' </h4>' +
+                 '<h4 class="media-heading">@' + escape(item.username) + verified + ' </h4>' +
                   '<p>' +  about +  '</p>' +               '</div>' +
              '</div>';
 
@@ -1204,7 +1204,7 @@ $(function () {
                });
            }
        });
-        
+
          //  Create post user tags
        var bigSearchUrl = $('#navbar-search').data('url');
 
@@ -1217,15 +1217,15 @@ $(function () {
     //             text: input
     //         }
     //     }
-    // }); 
+    // });
 
 
 
 
         var selectizeUsers = $('#userTags').selectize({
             valueField: 'id',
-            labelField: 'name',
-            searchField: 'name',
+            labelField: 'username',
+            searchField: 'username',
             plugins: ['remove_button'],
             render: {
                 option: function(item, escape) {
@@ -1238,24 +1238,24 @@ $(function () {
                         var about = '(no description added)';
                     }
 
-                    return '<div class="media big-search-dropdown">' + 
+                    return '<div class="media big-search-dropdown">' +
                         '<a class="media-left" href="#">' +
                             '<img src="'+ item.avatar + '" alt="...">' +
                         '</a>' +
                     '<div class="media-body">' +
-                        '<h4 class="media-heading">' + escape(item.name) + '</h4>' +
+                        '<h4 class="media-heading">@' + escape(item.username) + '</h4>' +
                         '<p>' +  about +  '</p>' +               '</div>' +
                     '</div>';
                 },
-           
+
            },
            onChange: function(value)
            {
                 $('[name="user_tags"]').val(value);
-                // $('.user-tags-added').find('.user-tag-names').append('<a href="#">' + value  + '</a>');    
+                // $('.user-tags-added').find('.user-tag-names').append('<a href="#">' + value  + '</a>');
                         var selectize =selectizeUsers[0].selectize;
                   var values = selectize.items;
-                
+
                   getUsersData();
            },
               load: function(query, callback) {
@@ -1283,10 +1283,10 @@ $(function () {
           var array = values.split(',');
           var selectedUserTags = ''
           $.each(array, function(key, value) {
-            selectedUserTags = selectedUserTags  + '<a href="#">' + selectize.options[value].name  + '</a>, ';
+            selectedUserTags = selectedUserTags  + '<a href="#">@' + selectize.options[value].username  + '</a>, ';
           });
 
-            $('.user-tags-added').find('.user-tag-names').html(selectedUserTags);    
+            $('.user-tags-added').find('.user-tag-names').html(selectedUserTags);
 
           // $.each(values,function(value){
           // });
@@ -1397,18 +1397,18 @@ $('#add-members-page').on('keyup',function(){
                 var user = value[0];
                 var joinStatus = '';
                 var user_id = '';
-                var page_id = '';                
+                var page_id = '';
 
                 if(user.pages[0] != null)
                 {
                   user_id = user.pages[0].pivot.user_id;
-                  page_id = user.pages[0].pivot.page_id;                  
-                  joinStatus = 'Joined';                 
+                  page_id = user.pages[0].pivot.page_id;
+                  joinStatus = 'Joined';
                 }
                 else
                 {
                   user_id = user.id;
-                  page_id = pageId;                  
+                  page_id = pageId;
                   joinStatus = 'Join';
                 }
 
@@ -1468,7 +1468,7 @@ $('#add-members-page').on('keyup',function(){
               // $('.timeline-list .list-inline').toggle('slow');
               e.preventDefault();
                if($(window).width() < 1200) {
-                
+
                  $('.timeline-list .list-inline').slideToggle('slow');
               }
         });
@@ -1480,7 +1480,7 @@ $('#add-members-page').on('keyup',function(){
         });
 
 
-        
+
         //smooth scroll intialization
 
         $(".smooth-scroll").mCustomScrollbar("scrollTo","bottom",{
@@ -1489,7 +1489,7 @@ $('#add-members-page').on('keyup',function(){
             mouseWheel:{ preventDefault: true }
         });
 
-        //tooltip intialization 
+        //tooltip intialization
          $('[data-toggle="tooltip"]').tooltip();
 
         //date-picker
@@ -1507,7 +1507,7 @@ $('#add-members-page').on('keyup',function(){
         $('.input-group .form-control').on('blur',function(){
           $(this).parents('.input-group').removeClass('input-group-focus');
         });
-        
+
 
 
 function notify(message,type,layout)
@@ -1561,7 +1561,7 @@ $(".settings_switch").change(function(){
     'save table contextmenu directionality emoticons template paste textcolor'
   ],
   content_css: '../../../themes/default/assets/css/tinymce.css',
-  toolbar: 'bold italic underline strikethrough | link blockquote image code | bullist  numlist alignjustify aligncenter alignleft alignright', 
+  toolbar: 'bold italic underline strikethrough | link blockquote image code | bullist  numlist alignjustify aligncenter alignleft alignright',
   menubar: true,
   statusbar: false,
   resize: true,
@@ -1569,4 +1569,3 @@ $(".settings_switch").change(function(){
   });
 
 });
-

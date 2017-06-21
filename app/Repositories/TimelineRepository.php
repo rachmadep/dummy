@@ -11,7 +11,7 @@ class TimelineRepository extends BaseRepository
      * @var array
      */
     protected $fieldSearchable = [
-        'name' => 'like',
+        'username' => 'like',
         'type',
     ];
 
