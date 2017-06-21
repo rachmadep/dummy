@@ -45,6 +45,12 @@ function suggestedGroups()
     return $suggested_groups;
 }
 
+function allGroups()
+{
+    $allGroups = App\Group::all();
+    return $allGroups;
+}
+
 function suggestedPages()
 {
     $suggested_pages = App\Page::whereNotIn('id', Auth::user()->pageLikes()->pluck('page_id'))->whereNotIn('id', Auth::user()->pages()->pluck('page_id'))->get();

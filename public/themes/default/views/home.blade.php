@@ -3,7 +3,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-5 col-lg-4">
-					{!! Theme::partial('home-leftbar',compact('trending_tags', 'suggested_users', 'suggested_groups', 'suggested_pages')) !!}
+					{!! Theme::partial('home-leftbar',compact('trending_tags', 'groups', 'suggested_users', 'suggested_groups', 'suggested_pages')) !!}
 				</div>
 
                 <div class="col-md-7 col-lg-7">

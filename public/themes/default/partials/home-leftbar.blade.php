@@ -15,14 +15,9 @@
 					<div class="avatar-details">
 						<h2 class="avatar-name">
 							<a href="{{ url(Auth::user()->username) }}">
-								{{ Auth::user()->name }}
-							</a>
-						</h2>
-						<h4 class="avatar-mail">
-							<a href="{{ url(Auth::user()->username) }}">
 								{{ '@'.Auth::user()->username }}
 							</a>
-						</h4>
+						</h2>
 					</div>
 				</div>
 				<ul class="activity-list list-inline">
@@ -61,6 +56,42 @@
 		</div>
 	</div><!-- /panel -->
 
+  <div class="panel panel-default">
+		<div class="panel-heading no-bg">
+			<h3 class="panel-title">
+				Support Groups
+			</h3>
+		</div>
+		<div class="panel-body">
+			<div class="user-follow socialite">
+				<!-- Each user is represented with media block -->
+
+				@foreach($groups as $group)
+
+				<div class="media">
+					<div class="media-left badge-verification">
+						<a href="{{ url($group->username) }}">
+							@if($group->avatar != NULL)
+							<img src="{{ url('group/avatar/'.$group->avatar) }}" class="img-icon" alt="{{ $group->name }}" title="{{ $group->name }}">
+							@else
+							<img src="{{ url('group/avatar/default-group-avatar.png') }}" class="img-icon" alt="{{ $group->name }}" title="{{ $group->name }}">
+							@endif
+						</a>
+					</div>
+					<div class="media-body socialte-timeline join-links">
+						<h4 class="media-heading"><a href="{{ url($group->username) }}">{{ $group->name }} </a>
+							<span class="text-muted">{{ '@'.$group->username }}</span></h4>
+
+
+						</div>
+					</div>
+					@endforeach
+
+
+				</div><!-- Suggested groups widget -->
+			</div>
+		</div><!-- /panel -->
+
 	<div class="panel panel-default">
 		<div class="panel-heading no-bg">
 			<h3 class="panel-title">
@@ -87,8 +118,7 @@
 						</a>
 					</div>
 					<div class="media-body socialte-timeline follow-links">
-						<h4 class="media-heading"><a href="{{ url($suggested_user->username) }}">{{ $suggested_user->name }} </a>
-							<span class="text-muted">{{ '@'.$suggested_user->username }}</span>
+						<h4 class="media-heading suggested-p"><a href="{{ url($suggested_user->username) }}">{{ '@'.$suggested_user->username }} </a>
 						</h4>
 							<div class="btn-follow">
 								<a href="#" class="btn btn-default follow-user follow" data-timeline-id="{{ $suggested_user->timeline->id }}"> <i class="fa fa-heart"></i> {{ trans('common.follow') }}</a>

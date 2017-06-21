@@ -22,7 +22,7 @@
 				</div><!-- /input-group -->
 			</form>
 			<!-- Collect the nav links, forms, and other content for toggling -->
-			
+
 			<?php if(Auth::guest()): ?>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="logout">
@@ -82,7 +82,7 @@
 								</div>
 								<?php endif; ?>
 								<div class="dropdown-menu-footer"><br>
-									
+
 								</div>
 							</div>
 						</li>
@@ -111,7 +111,7 @@
 												</div>
 												<div class="media-body">
 													<h4 class="media-heading">
-														<span class="message-heading">{{ conversation.user.name }}</span> 
+														<span class="message-heading">{{ conversation.user.name }}</span>
 														<span class="online-status hidden"></span>
 														<time class="timeago message-time" datetime="{{ conversation.lastMessage.created_at }}" title="{{ conversation.lastMessage.created_at }}">
 															{{ conversation.lastMessage.created_at }}
@@ -149,7 +149,7 @@
 						<a href="<?php echo e(url(Auth::user()->username)); ?>" class="dropdown-toggle no-padding" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 							<img src="<?php echo e(Auth::user()->avatar); ?>" alt="<?php echo e(Auth::user()->name); ?>" class="img-radius img-30" title="<?php echo e(Auth::user()->name); ?>">
 
-							<span class="user-name"><?php echo e(Auth::user()->name); ?></span><i class="fa fa-angle-down" aria-hidden="true"></i></a>
+							<span class="user-name"><?php echo e('@'.Auth::user()->username); ?></span><i class="fa fa-angle-down" aria-hidden="true"></i></a>
 							<ul class="dropdown-menu">
 								<?php if(Auth::user()->hasRole('admin')): ?>
 								<li class="<?php echo e(Request::segment(1) == 'admin' ? 'active' : ''); ?>"><a href="<?php echo e(url('admin')); ?>"><i class="fa fa-user-secret" aria-hidden="true"></i><?php echo e(trans('common.admin')); ?></a></li>
@@ -170,9 +170,8 @@
 	            <?php endif; ?>
 	        </div><!-- /.navbar-collapse -->
 	    </div><!-- /.container-fluid -->
-	</nav>	
+	</nav>
 
 
 	<?php echo Theme::asset()->container('footer')->usePath()->add('notifications', 'js/notifications.js'); ?>
-
 

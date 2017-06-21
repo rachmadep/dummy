@@ -99,6 +99,7 @@ class TimelineController extends AppBaseController
          $posts = [];
          $timeline = Timeline::where('username', $username)->first();
          $user_post = '';
+         $groups = Group::all();
 
          if ($timeline == null) {
              return redirect('/');
@@ -156,7 +157,7 @@ class TimelineController extends AppBaseController
          $next_page_url = url('ajax/get-more-posts?page=2&username='.$username);
 
          $theme = Theme::uses(Setting::get('current_theme', 'default'))->layout('default');
-         $theme->setTitle($timeline->name.' | '.Setting::get('site_title').' | '.Setting::get('site_tagline'));
+         $theme->setTitle($timeline->username.' | '.Setting::get('site_title').' | '.Setting::get('site_tagline'));
 
          return $theme->scope('users/timeline', compact('user', 'timeline', 'posts', 'liked_pages', 'timeline_type', 'page', 'group', 'next_page_url', 'joined_groups', 'follow_user_status', 'followRequests', 'following_count', 'followers_count', 'timeline_post', 'user_post', 'follow_confirm', 'joined_groups_count', 'own_pages', 'own_groups', 'group_members', 'page_members'))->render();
      }
@@ -187,6 +188,7 @@ class TimelineController extends AppBaseController
         $trending_tags = trendingTags();
         $suggested_users = suggestedUsers();
         $suggested_groups = suggestedGroups();
+        $groups = allGroups();
         $suggested_pages = suggestedPages();
 
         // Check for hashtag
@@ -229,9 +231,9 @@ class TimelineController extends AppBaseController
 
         $next_page_url = url('ajax/get-more-feed?page=2&ajax=true&hashtag='.$request->hashtag.'&username='.Auth::user()->username);
 
-        $theme->setTitle($timeline->name.' | '.Setting::get('site_title').' | '.Setting::get('site_tagline'));
+        $theme->setTitle($timeline->username.' | '.Setting::get('site_title').' | '.Setting::get('site_tagline'));
 
-        return $theme->scope('home', compact('timeline', 'posts', 'next_page_url', 'trending_tags', 'suggested_users', 'active_announcement', 'suggested_groups', 'suggested_pages'))
+        return $theme->scope('home', compact('timeline', 'posts', 'next_page_url', 'trending_tags', 'groups', 'suggested_users', 'active_announcement', 'suggested_groups', 'suggested_pages'))
        ->render();
     }
 
@@ -246,6 +248,7 @@ class TimelineController extends AppBaseController
         $trending_tags = trendingTags();
         $suggested_users = suggestedUsers();
         $suggested_groups = suggestedGroups();
+        $groups = allGroups();
         $suggested_pages = suggestedPages();
 
         // Check for hashtag
@@ -282,9 +285,9 @@ class TimelineController extends AppBaseController
 
         $next_page_url = url('ajax/get-global-feed?page=2&ajax=true&hashtag='.$request->hashtag.'&username='.Auth::user()->username);
 
-        $theme->setTitle($timeline->name.' | '.Setting::get('site_title').' | '.Setting::get('site_tagline'));
+        $theme->setTitle($timeline->username.' | '.Setting::get('site_title').' | '.Setting::get('site_tagline'));
 
-        return $theme->scope('home', compact('timeline', 'posts', 'next_page_url', 'trending_tags', 'suggested_users', 'active_announcement', 'suggested_groups', 'suggested_pages'))
+        return $theme->scope('home', compact('timeline', 'posts', 'next_page_url', 'trending_tags', 'groups', 'suggested_users', 'active_announcement', 'suggested_groups', 'suggested_pages'))
        ->render();
     }
 
@@ -500,7 +503,7 @@ class TimelineController extends AppBaseController
         if ($comment) {
             if (Auth::user()->id != $post->user_id) {
                 //Notify the user for comment on his/her post
-            Notification::create(['user_id' => $post->user_id, 'post_id' => $request->post_id, 'notified_by' => Auth::user()->id, 'description' => Auth::user()->name.' commented on your post', 'type' => 'comment_post']);
+            Notification::create(['user_id' => $post->user_id, 'post_id' => $request->post_id, 'notified_by' => Auth::user()->id, 'description' => '@'.Auth::user()->username.' commented on your post', 'type' => 'comment_post']);
             }
 
             $theme = Theme::uses(Setting::get('current_theme', 'default'))->layout('ajax');
@@ -561,7 +564,7 @@ class TimelineController extends AppBaseController
             $status_message = 'successfully liked';
 
             if ($post->user->id != Auth::user()->id) {
-                Notification::create(['user_id' => $post->user->id, 'post_id' => $post->id, 'notified_by' => Auth::user()->id, 'description' => Auth::user()->name.' '.$notify_message, 'type' => $notify_type]);
+                Notification::create(['user_id' => $post->user->id, 'post_id' => $post->id, 'notified_by' => Auth::user()->id, 'description' => '@'.Auth::user()->username.' '.$notify_message, 'type' => $notify_type]);
             }
 
             return response()->json(['status' => '200', 'liked' => true, 'message' => $status_message, 'likecount' => $like_count]);
@@ -577,7 +580,7 @@ class TimelineController extends AppBaseController
             $status_message = 'successfully unliked';
 
             if ($post->user->id != Auth::user()->id) {
-                Notification::create(['user_id' => $post->user->id, 'post_id' => $post->id, 'notified_by' => Auth::user()->id, 'description' => Auth::user()->name.' '.$notify_message, 'type' => $notify_type]);
+                Notification::create(['user_id' => $post->user->id, 'post_id' => $post->id, 'notified_by' => Auth::user()->id, 'description' => '@'.Auth::user()->username.' '.$notify_message, 'type' => $notify_type]);
             }
 
             return response()->json(['status' => '200', 'liked' => false, 'message' => $status_message, 'likecount' => $like_count]);
@@ -613,7 +616,7 @@ class TimelineController extends AppBaseController
 
             //Notify the user for comment like
             if ($comment->user->id != Auth::user()->id) {
-                Notification::create(['user_id' => $comment->user_id, 'post_id' => $comment->post_id, 'notified_by' => Auth::user()->id, 'description' => Auth::user()->name.' liked your comment', 'type' => 'like_comment']);
+                Notification::create(['user_id' => $comment->user_id, 'post_id' => $comment->post_id, 'notified_by' => Auth::user()->id, 'description' => '@'.Auth::user()->username.' liked your comment', 'type' => 'like_comment']);
             }
 
             return response()->json(['status' => '200', 'liked' => true, 'message' => 'successfully liked', 'likecount' => $like_count]);
@@ -624,7 +627,7 @@ class TimelineController extends AppBaseController
 
             //Notify the user for comment unlike
             if ($comment->user->id != Auth::user()->id) {
-                Notification::create(['user_id' => $comment->user_id, 'post_id' => $comment->post_id, 'notified_by' => Auth::user()->id, 'description' => Auth::user()->name.' unliked your comment', 'type' => 'unlike_comment']);
+                Notification::create(['user_id' => $comment->user_id, 'post_id' => $comment->post_id, 'notified_by' => Auth::user()->id, 'description' => Auth::user()->username.' unliked your comment', 'type' => 'unlike_comment']);
             }
 
             return response()->json(['status' => '200', 'unliked' => false, 'message' => 'successfully unliked', 'likecount' => $like_count]);
@@ -641,7 +644,7 @@ class TimelineController extends AppBaseController
             $post_share_count = $post->users_shared()->get()->count();
 
             //Notify the user for post share
-            Notification::create(['user_id' => $post->user_id, 'post_id' => $request->post_id, 'notified_by' => Auth::user()->id, 'description' => Auth::user()->name.' shared your post', 'type' => 'share_post']);
+            Notification::create(['user_id' => $post->user_id, 'post_id' => $request->post_id, 'notified_by' => Auth::user()->id, 'description' => '@'.Auth::user()->username.' shared your post', 'type' => 'share_post']);
 
             $user = User::find(Auth::user()->id);
             $user_settings = $user->getUserSettings($posted_user->id);
@@ -659,7 +662,6 @@ class TimelineController extends AppBaseController
             $post_share_count = $post->users_shared()->get()->count();
 
             //Notify the user for post share
-            Notification::create(['user_id' => $post->user_id, 'post_id' => $request->post_id, 'notified_by' => Auth::user()->id, 'description' => Auth::user()->name.' unshared your post', 'type' => 'unshare_post']);
 
             return response()->json(['status' => '200', 'unshared' => false, 'message' => 'Successfully unshared', 'share_count' => $post_share_count]);
         }
@@ -694,10 +696,10 @@ class TimelineController extends AppBaseController
             $timeline->reports()->attach(Auth::user()->id, ['status' => 'pending']);
 
             if ($timeline->type == 'user') {
-                Notification::create(['user_id' => $timeline->user->id, 'timeline_id' => $timeline->id, 'notified_by' => Auth::user()->id, 'description' => Auth::user()->name.' reported you', 'type' => 'user_report']);
+                Notification::create(['user_id' => $timeline->user->id, 'timeline_id' => $timeline->id, 'notified_by' => Auth::user()->id, 'description' => Auth::user()->username.' reported you', 'type' => 'user_report']);
             } else {
                 foreach ($admins as $admin) {
-                    Notification::create(['user_id' => $admin->id, 'timeline_id' => $timeline->id, 'notified_by' => Auth::user()->id, 'description' => Auth::user()->name.' reported your '.$timeline->type, 'type' => $report_type]);
+                    Notification::create(['user_id' => $admin->id, 'timeline_id' => $timeline->id, 'notified_by' => Auth::user()->id, 'description' => Auth::user()->username.' reported your '.$timeline->type, 'type' => $report_type]);
                 }
             }
 
@@ -707,10 +709,10 @@ class TimelineController extends AppBaseController
             $timeline->reports()->detach([Auth::user()->id]);
 
             if ($timeline->type == 'user') {
-                Notification::create(['user_id' => $timeline->user->id, 'timeline_id' => $timeline->id, 'notified_by' => Auth::user()->id, 'description' => Auth::user()->name.' unreported you', 'type' => 'user_report']);
+                Notification::create(['user_id' => $timeline->user->id, 'timeline_id' => $timeline->id, 'notified_by' => Auth::user()->id, 'description' => Auth::user()->username.' unreported you', 'type' => 'user_report']);
             } else {
                 foreach ($admins as $admin) {
-                    Notification::create(['user_id' => $admin->id, 'timeline_id' => $timeline->id, 'notified_by' => Auth::user()->id, 'description' => Auth::user()->name.' unreported your page', 'type' => 'page_report']);
+                    Notification::create(['user_id' => $admin->id, 'timeline_id' => $timeline->id, 'notified_by' => Auth::user()->id, 'description' => Auth::user()->username.' unreported your page', 'type' => 'page_report']);
                 }
             }
 
@@ -844,14 +846,13 @@ class TimelineController extends AppBaseController
             }
 
             //Notify the user for follow
-            Notification::create(['user_id' => $follow->id, 'timeline_id' => $request->timeline_id, 'notified_by' => Auth::user()->id, 'description' => Auth::user()->name.' is following you', 'type' => 'follow']);
+            Notification::create(['user_id' => $follow->id, 'timeline_id' => $request->timeline_id, 'notified_by' => Auth::user()->id, 'description' => '@'.Auth::user()->username.' is following you', 'type' => 'follow']);
 
             return response()->json(['status' => '200', 'followed' => true, 'message' => 'successfully followed']);
         } else {
             $follow->followers()->detach([Auth::user()->id]);
 
             //Notify the user for follow
-            Notification::create(['user_id' => $follow->id, 'timeline_id' => $request->timeline_id, 'notified_by' => Auth::user()->id, 'description' => Auth::user()->name.' is unfollowing you', 'type' => 'unfollow']);
 
             return response()->json(['status' => '200', 'followed' => false, 'message' => 'successfully unFollowed']);
         }
@@ -1679,6 +1680,7 @@ class TimelineController extends AppBaseController
         $trending_tags = trendingTags();
         $suggested_users = suggestedUsers();
         $suggested_groups = suggestedGroups();
+        $groups = allGroups();
         $suggested_pages = suggestedPages();
 
         //Redirect to home page if post doesn't exist
@@ -1688,6 +1690,6 @@ class TimelineController extends AppBaseController
         $theme = Theme::uses('default')->layout('default');
         $theme->setTitle(trans('common.post').' | '.Setting::get('site_title').' | '.Setting::get('site_tagline'));
 
-        return $theme->scope('timeline/single-post', compact('post', 'suggested_users', 'trending_tags', 'suggested_groups', 'suggested_pages'))->render();
+        return $theme->scope('timeline/single-post', compact('post', 'suggested_users', 'trending_tags', 'groups', 'suggested_groups', 'suggested_pages'))->render();
     }
 }

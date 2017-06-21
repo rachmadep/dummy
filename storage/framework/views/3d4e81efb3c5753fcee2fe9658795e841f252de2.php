@@ -15,16 +15,10 @@
 					<div class="avatar-details">
 						<h2 class="avatar-name">
 							<a href="<?php echo e(url(Auth::user()->username)); ?>">
-								<?php echo e(Auth::user()->name); ?>
-
-							</a>
-						</h2>
-						<h4 class="avatar-mail">
-							<a href="<?php echo e(url(Auth::user()->username)); ?>">
 								<?php echo e('@'.Auth::user()->username); ?>
 
 							</a>
-						</h4>
+						</h2>
 					</div>
 				</div>
 				<ul class="activity-list list-inline">
@@ -69,6 +63,42 @@
 		</div>
 	</div><!-- /panel -->
 
+  <div class="panel panel-default">
+		<div class="panel-heading no-bg">
+			<h3 class="panel-title">
+				Support Groups
+			</h3>
+		</div>
+		<div class="panel-body">
+			<div class="user-follow socialite">
+				<!-- Each user is represented with media block -->
+
+				<?php foreach($groups as $group): ?>
+
+				<div class="media">
+					<div class="media-left badge-verification">
+						<a href="<?php echo e(url($group->username)); ?>">
+							<?php if($group->avatar != NULL): ?>
+							<img src="<?php echo e(url('group/avatar/'.$group->avatar)); ?>" class="img-icon" alt="<?php echo e($group->name); ?>" title="<?php echo e($group->name); ?>">
+							<?php else: ?>
+							<img src="<?php echo e(url('group/avatar/default-group-avatar.png')); ?>" class="img-icon" alt="<?php echo e($group->name); ?>" title="<?php echo e($group->name); ?>">
+							<?php endif; ?>
+						</a>
+					</div>
+					<div class="media-body socialte-timeline join-links">
+						<h4 class="media-heading"><a href="<?php echo e(url($group->username)); ?>"><?php echo e($group->name); ?> </a>
+							<span class="text-muted"><?php echo e('@'.$group->username); ?></span></h4>
+
+
+						</div>
+					</div>
+					<?php endforeach; ?>
+
+
+				</div><!-- Suggested groups widget -->
+			</div>
+		</div><!-- /panel -->
+
 	<div class="panel panel-default">
 		<div class="panel-heading no-bg">
 			<h3 class="panel-title">
@@ -96,8 +126,7 @@
 						</a>
 					</div>
 					<div class="media-body socialte-timeline follow-links">
-						<h4 class="media-heading"><a href="<?php echo e(url($suggested_user->username)); ?>"><?php echo e($suggested_user->name); ?> </a>
-							<span class="text-muted"><?php echo e('@'.$suggested_user->username); ?></span>
+						<h4 class="media-heading suggested-p"><a href="<?php echo e(url($suggested_user->username)); ?>"><?php echo e('@'.$suggested_user->username); ?> </a>
 						</h4>
 							<div class="btn-follow">
 								<a href="#" class="btn btn-default follow-user follow" data-timeline-id="<?php echo e($suggested_user->timeline->id); ?>"> <i class="fa fa-heart"></i> <?php echo e(trans('common.follow')); ?></a>

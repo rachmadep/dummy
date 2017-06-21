@@ -19,6 +19,7 @@
 
         <?php echo Theme::asset()->styles(); ?>
 
+        <link rel="stylesheet" href="themes/default/assets/css/style2.css">
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -42,12 +43,13 @@
     </head>
     <body>
         <div class="">
-            <?php echo Theme::partial('guest-header'); ?>    
+            <?php echo Theme::partial('guest-header'); ?>
+
         </div>
-        
+
         <?php echo Theme::content(); ?>
 
-        
+
         <?php echo Theme::partial('footer'); ?>
 
 

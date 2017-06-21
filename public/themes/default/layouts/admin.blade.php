@@ -13,6 +13,8 @@
 
 
         <title>{{ Theme::get('title') }}</title>
+        <link rel="stylesheet" href="themes/default/assets/css/style2.css">
+
 
         {!! Theme::asset()->styles() !!}
 
@@ -55,7 +57,7 @@
                 </div><!-- /row -->
             </div>
         </div><!-- /amin-content -->
-        
+
         {!! Theme::partial('footer') !!}
         <script>
             var pusherConfig = {

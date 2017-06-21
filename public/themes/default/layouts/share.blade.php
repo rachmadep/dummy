@@ -2,7 +2,8 @@
 <html lang="en">
     <head>
         <link rel="stylesheet" href="{!! url('/themes/default/assets/css/share.css') !!}">
-        
+        <link rel="stylesheet" href="themes/default/assets/css/style2.css">
+
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -17,7 +18,7 @@
             var theme_url = "{!! Theme::asset()->url('') !!}";
         </script>
         {!! Theme::asset()->scripts() !!}
-        
+
     </head>
     <body>
         <div style="width: 500px;">

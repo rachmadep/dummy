@@ -1,0 +1,30 @@
+/*custome css*/
+
+.box-reg{
+  background: #fff;
+  border: 1px solid #e6eaee;
+  border-radius: 4px;
+}
+
+.mini-profile .avatar-profile .avatar-details .avatar-name a {
+    text-transform: none;
+}
+.panel-post .panel-heading .post-author .user-post-details li .user {
+    text-transform: none;
+}
+.suggested-p{
+  padding-top: 10px;
+}
+.btn-follow {
+    float: right;
+    margin-top: 8px;
+}
+.dropdown.message .dropdown-menu>ul li .media .media-body .media-heading .message-heading {
+    text-transform: none;
+}
+.user-image.dropdown.socialite>a .user-name {
+    text-transform: none;
+}
+.panel-post .panel-heading .post-author .user-post-details li .user {
+    text-transform: none;
+}

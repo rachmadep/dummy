@@ -18,6 +18,7 @@
         <title>{{ Theme::get('title') }}</title>
 
         {!! Theme::asset()->styles() !!}
+        <link rel="stylesheet" href="themes/default/assets/css/style2.css">
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -39,11 +40,11 @@
     </head>
     <body>
         <div class="">
-            {!! Theme::partial('guest-header') !!}    
+            {!! Theme::partial('guest-header') !!}
         </div>
-        
+
         {!! Theme::content() !!}
-        
+
         {!! Theme::partial('footer') !!}
 
         {!! Theme::asset()->container('footer')->scripts() !!}
