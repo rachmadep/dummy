@@ -28,3 +28,6 @@
 .panel-post .panel-heading .post-author .user-post-details li .user {
     text-transform: none;
 }
+.chat-box .chat-box-header .pull-left {
+    text-transform: none;
+}

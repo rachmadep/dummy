@@ -111,7 +111,7 @@
 												</div>
 												<div class="media-body">
 													<h4 class="media-heading">
-														<span class="message-heading">@{{ conversation.user.name }}</span>
+														<span class="message-heading">@@{{ conversation.user.username }}</span>
 														<span class="online-status hidden"></span>
 														<time class="timeago message-time" datetime="@{{ conversation.lastMessage.created_at }}" title="@{{ conversation.lastMessage.created_at }}">
 															@{{ conversation.lastMessage.created_at }}

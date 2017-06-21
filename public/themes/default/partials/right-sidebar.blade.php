@@ -40,7 +40,7 @@
 			<div class="chat-box" v-bind:class="[chatBox.minimised ? 'chat-box-small' : '',  ]" v-for="chatBox in chatBoxes">
 				<div class="chat-box-header">
 					<span class="pull-left">
-						<a href="#">@{{ chatBox.user.name }}</a>
+						<a href="#">@@{{ chatBox.user.username }}</a>
 					</span>
 					<ul class="list-inline pull-right">
 						<li class="minimize-chatbox"><a href="#"><i class="fa fa-minus" @click.prevent="chatBox.minimised ? chatBox.minimised=false : chatBox.minimised=true" aria-hidden="true"></i></a></li>

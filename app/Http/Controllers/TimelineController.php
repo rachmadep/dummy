@@ -1614,7 +1614,6 @@ class TimelineController extends AppBaseController
         if ($comment->delete()) {
             if (Auth::user()->id != $comment->user->id) {
                 //Notify the user for comment delete
-              Notification::create(['user_id' => $comment->user->id, 'post_id' => $comment->post_id, 'notified_by' => Auth::user()->id, 'description' => Auth::user()->name.' deleted your comment', 'type' => 'delete_comment']);
             }
 
             return response()->json(['status' => '200', 'deleted' => true, 'message' => 'Comment successfully deleted']);
@@ -1632,7 +1631,6 @@ class TimelineController extends AppBaseController
             foreach ($users as $user) {
                 if ($user->id != Auth::user()->id) {
                     //Notify the user for page delete
-                Notification::create(['user_id' => $user->id, 'timeline_id' => $page->timeline->id, 'notified_by' => Auth::user()->id, 'description' => Auth::user()->name.' deleted your page', 'type' => 'delete_page']);
                 }
             }
 
@@ -1662,7 +1660,6 @@ class TimelineController extends AppBaseController
 
         if ($reported) {
             //Notify the user for reporting his post
-          Notification::create(['user_id' => $post->user_id, 'post_id' => $request->post_id, 'notified_by' => Auth::user()->id, 'description' => Auth::user()->name.' reported your post', 'type' => 'report_post']);
 
             return response()->json(['status' => '200', 'reported' => true, 'message' => 'Post successfully reported']);
         }
