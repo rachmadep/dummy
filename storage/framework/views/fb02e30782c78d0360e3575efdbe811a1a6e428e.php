@@ -1,7 +1,7 @@
 <!-- main-section -->
 
 	<div class="container">
-		<div class="row">				 
+		<div class="row">
 			<div class="col-md-10">
 				<?php if($timeline->type == "user"): ?>
 				<?php echo Theme::partial('user-header',compact('user','timeline','liked_pages','joined_groups','followRequests','following_count','followers_count',
@@ -41,23 +41,30 @@
 								<?php if(($page->timeline_post_privacy == "only_admins" && $page->is_admin(Auth::user()->id)) || ($page->timeline_post_privacy == "everyone")): ?>
 									<?php echo Theme::partial('create-post',compact('timeline')); ?>
 
-								<?php elseif($page->timeline_post_privacy == "everyone"): ?>	
+								<?php elseif($page->timeline_post_privacy == "everyone"): ?>
 									<?php echo Theme::partial('create-post',compact('timeline')); ?>
 
 								<?php endif; ?>
-								
-							<?php elseif($timeline->type == "group"): ?>						
+
+							<?php elseif($timeline->type == "group"): ?>
 								<?php if(($group->post_privacy == "only_admins" && $group->is_admin(Auth::user()->id))): ?>
 								<?php echo Theme::partial('create-post',compact('timeline')); ?>
 
+								<?php elseif(($group->post_privacy == "members" && Auth::user()->get_group($group->id)->pivot->status == 'approved')): ?>
+								<?php echo Theme::partial('create-post',compact('timeline')); ?>
+
+								<?php else: ?>
+								<?php echo Theme::partial('create-post',compact('timeline')); ?>
+
 								<?php endif; ?>
-							<?php endif; ?>					
+							<?php endif; ?>
 
 							<div class="timeline-posts">
 								<?php if(count($posts) > 0): ?>
 									<?php if($user_post == true || $user_post == "page" || $user_post == "group"): ?>
-	 									<?php foreach($posts as $post): ?>									
-	 										<?php echo Theme::partial('post',compact('post','timeline','next_page_url','user')); ?>					
+	 									<?php foreach($posts as $post): ?>
+	 										<?php echo Theme::partial('post',compact('post','timeline','next_page_url','user')); ?>
+
 	 									<?php endforeach; ?>
 	 								<?php endif; ?>
 								<?php else: ?>

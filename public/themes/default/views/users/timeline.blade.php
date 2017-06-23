@@ -1,7 +1,7 @@
 <!-- main-section -->
 
 	<div class="container">
-		<div class="row">				 
+		<div class="row">
 			<div class="col-md-10">
 				@if($timeline->type == "user")
 				{!! Theme::partial('user-header',compact('user','timeline','liked_pages','joined_groups','followRequests','following_count','followers_count',
@@ -33,21 +33,25 @@
 							@elseif($timeline->type == "page")
 								@if(($page->timeline_post_privacy == "only_admins" && $page->is_admin(Auth::user()->id)) || ($page->timeline_post_privacy == "everyone"))
 									{!! Theme::partial('create-post',compact('timeline')) !!}
-								@elseif($page->timeline_post_privacy == "everyone")	
+								@elseif($page->timeline_post_privacy == "everyone")
 									{!! Theme::partial('create-post',compact('timeline')) !!}
 								@endif
-								
-							@elseif($timeline->type == "group")						
+
+							@elseif($timeline->type == "group")
 								@if(($group->post_privacy == "only_admins" && $group->is_admin(Auth::user()->id)))
 								{!! Theme::partial('create-post',compact('timeline')) !!}
+								@elseif(($group->post_privacy == "members" && Auth::user()->get_group($group->id)->pivot->status == 'approved'))
+								{!! Theme::partial('create-post',compact('timeline')) !!}
+								@else
+								{!! Theme::partial('create-post',compact('timeline')) !!}
 								@endif
-							@endif					
+							@endif
 
 							<div class="timeline-posts">
 								@if(count($posts) > 0)
 									@if($user_post == true || $user_post == "page" || $user_post == "group")
-	 									@foreach($posts as $post)									
-	 										{!! Theme::partial('post',compact('post','timeline','next_page_url','user')) !!}					
+	 									@foreach($posts as $post)
+	 										{!! Theme::partial('post',compact('post','timeline','next_page_url','user')) !!}
 	 									@endforeach
 	 								@endif
 								@else
