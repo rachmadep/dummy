@@ -2,7 +2,7 @@
 
 	<div class="container">
 		<div class="row">
-			<div class="col-md-10">
+			<div class="col-md-11">
 				@if($timeline->type == "user")
 				{!! Theme::partial('user-header',compact('user','timeline','liked_pages','joined_groups','followRequests','following_count','followers_count',
 						'follow_confirm','user_post','joined_groups_count')) !!}
@@ -63,9 +63,6 @@
 				</div><!-- /row -->
 			</div><!-- /col-md-10 -->
 
-			<div class="col-md-2">
-				{!! Theme::partial('timeline-rightbar') !!}
-			</div>
 
 		</div><!-- /row -->
 	</div>

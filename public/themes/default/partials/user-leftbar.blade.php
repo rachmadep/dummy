@@ -1,11 +1,11 @@
 <div class="user-profile-buttons">
 	<div class="row follow-links pagelike-links">
-		<!-- This [if-1] is for checking current user timeline or diff user timeline -->	
+		<!-- This [if-1] is for checking current user timeline or diff user timeline -->
 		@if(Auth::user()->username != $timeline->username)
-		<?php 
+		<?php
 					//php code is for checking user's follow_privacy settings
 		$user_follow ="";
-		$confirm_follow ="";						
+		$confirm_follow ="";
 		$othersSettings = $user->getOthersSettings($timeline->username);
 		if($othersSettings)
 		{
@@ -72,7 +72,7 @@
 						<i class="fa fa-check"></i> {{ trans('common.following') }}
 					</a>
 				</div>
-			@else							
+			@else
 				<div class="col-md-6 col-sm-6 col-xs-6 hidden">
 					<a href="#" class="btn btn-options btn-block follow-user btn-default follow " data-timeline-id="{{ $timeline->id }}">
 						<i class="fa fa-heart"></i> {{ trans('common.follow') }}
@@ -211,27 +211,7 @@
 </form>
 
 	<!-- my-pages -->
-	<div class="widget-pictures widget-best-pictures">
-		<div class="picture pull-left">
-			{{ trans('common.pages') }}
-		</div>
-		<div class="clearfix"></div>
-		<div class="best-pictures my-best-pictures">
-			<div class="row">
-				@if(count($own_pages) > 0)
-				@foreach($own_pages as $own_page)
-				<div class="col-md-2 col-sm-2 col-xs-2 best-pics">
-					<a href="{{ url($own_page->username) }}" class="image-hover" title="{{ $own_page->name }}" data-toggle="tooltip" data-placement="top">
-						<img src="@if($own_page->avatar != NULL) {{ url('page/avatar/'.$own_page->avatar) }} @else {{ url('page/avatar/default-page-avatar.png')}} @endif" alt="{{ $own_page->name }}" title="{{ $own_page->name }}">
-					</a>
-				</div>
-				@endforeach
-				@else
-				<div class="alert alert-warning">{{ trans('messages.no_pages') }}</div>
-				@endif
-			</div><!-- /row -->
-		</div>
-	</div>
+	
 	<!-- /my pages -->
 
 	<!-- my-groups -->
@@ -264,22 +244,6 @@
 	<!-- /my pages -->
 	@if(Setting::get('timeline_ad') != NULL)
 	<div id="link_other" class="post-filters">
-		{!! htmlspecialchars_decode(Setting::get('timeline_ad')) !!} 
-	</div>	
+		{!! htmlspecialchars_decode(Setting::get('timeline_ad')) !!}
+	</div>
 	@endif
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

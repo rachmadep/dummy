@@ -27,9 +27,9 @@
 									<li class="list-group-item">
 										<div class="connect-list">
 											<div class="connect-link pull-left">
-												<a href="{{ url($follower->username) }}">													
+												<a href="{{ url($follower->username) }}">
 													<img src="{{ $follower->avatar }}" alt="{{ $follower->name }}" class="img-icon img-30" title="{{ $follower->name }}">
-													{{ $follower->name }}
+													{{ '@'.$follower->username }}
 												</a>
 											</div>
 
@@ -68,4 +68,3 @@
 
 	</div>
 </div><!-- /container -->
-

@@ -4,12 +4,13 @@
 	<div class="row">
 		<div class="col-md-10">
 			<?php echo Theme::partial('user-header',compact('timeline','user','followRequests','following_count',
-			'followers_count','follow_confirm','user_post','joined_groups_count')); ?>				
-			
+			'followers_count','follow_confirm','user_post','joined_groups_count')); ?>
+
+
 			<div class="row">
 				<div class=" timeline">
 					<div class="col-md-4">
-						
+
 						<?php echo Theme::partial('user-leftbar',compact('timeline','user','follow_user_status','own_pages','own_groups')); ?>
 
 					</div>
@@ -29,9 +30,9 @@
 									<li class="list-group-item">
 										<div class="connect-list">
 											<div class="connect-link pull-left">
-												<a href="<?php echo e(url('/'.$follow->username)); ?>">													
+												<a href="<?php echo e(url('/'.$follow->username)); ?>">
 													<img src="<?php echo e($follow->avatar); ?>" alt="<?php echo e($follow->name); ?>" class="img-icon img-30" title="<?php echo e($follow->name); ?>">
-													<?php echo e($follow->name); ?>
+													<?php echo e('@'.$follow->username); ?>
 
 												</a>
 											</div>
@@ -69,4 +70,3 @@
 
 	</div>
 </div><!-- /container -->
-

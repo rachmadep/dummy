@@ -6,47 +6,17 @@
                 <div class="header-circle"><i class="fa fa-paper-plane" aria-hidden="true"></i></div>
             </div>
             <div class="login-bottom">
-                
+
                 <ul class="signup-errors text-danger list-unstyled"></ul>
 
                 <form method="POST" class="signup-form" action="{{ url('/register') }}">
                     {{ csrf_field() }}
 
+                  <div class="box-reg">
                     <div class="row">
-                        <div class="col-md-6">
-                            <fieldset class="form-group{{ $errors->has('affiliate') ? ' has-error' : '' }}">
-                                {{ Form::label('affiliate', trans('auth.affiliate_code')) }}<i class="optional">(optional)</i>
-                                @if(isset($_GET['affiliate']))
-                                    {{ Form::text('affiliate', $_GET['affiliate'], ['class' => 'form-control', 'id' => 'affiliate', 'disabled' =>'disabled']) }}
-                                    {{ Form::hidden('affiliate', $_GET['affiliate']) }}
-                                @else
-                                    {{ Form::text('affiliate', NULL, ['class' => 'form-control', 'id' => 'affiliate', 'placeholder'=> trans('auth.affiliate_code')]) }}
-                                @endif
-
-                                @if ($errors->has('affiliate'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('affiliate') }}</strong>
-                                    </span>
-                                @endif
-                            </fieldset>
-                        </div>
-                        <div class="col-md-6">
-                            <fieldset class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                                {{ Form::label('email', trans('auth.email_address')) }} 
-                                {{ Form::text('email', NULL, ['class' => 'form-control', 'id' => 'email', 'placeholder'=> trans('auth.welcome_to')]) }}
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </fieldset>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <fieldset class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                                {{ Form::label('name', trans('auth.name')) }} 
+                                {{ Form::label('name', trans('auth.name')) }}
                                 {{ Form::text('name', NULL, ['class' => 'form-control', 'id' => 'name', 'placeholder'=> trans('auth.name')]) }}
                                 @if ($errors->has('name'))
                                     <span class="help-block">
@@ -55,29 +25,28 @@
                                 @endif
                             </fieldset>
                         </div>
-                        <div class="col-md-6">
-                            <fieldset class="form-group">
-                                {{ Form::label('gender', trans('common.gender')) }} 
-                                {{ Form::select('gender', array('female' => 'Female', 'male' => 'Male', 'other' => 'None'), null, ['placeholder' => trans('auth.select_gender'), 'class' => 'form-control']) }}
-                            </fieldset>
-                        </div>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="col-md-6">
-                            <fieldset class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
-                                {{ Form::label('username', trans('common.username')) }} 
-                                {{ Form::text('username', NULL, ['class' => 'form-control', 'id' => 'username', 'placeholder'=> trans('common.username')]) }}
-                                @if ($errors->has('username'))
+                        @if(Setting::get('city') == "on")
+                           <div class="col-md-12">
+                                <fieldset class="form-group">
+                                    {{ Form::label('city', trans('common.current_city')) }}<i class="optional">(optional)</i>
+                                    {{ Form::text('city', NULL, ['class' => 'form-control', 'placeholder' => trans('common.current_city')]) }}
+                                </fieldset>
+                            </div>
+                        @endif
+                        <div class="col-md-12">
+                            <fieldset class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                                {{ Form::label('email', trans('auth.email_address')) }}
+                                {{ Form::text('email', NULL, ['class' => 'form-control', 'id' => 'email', 'placeholder'=> trans('auth.welcome_to')]) }}
+                                @if ($errors->has('email'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('username') }}</strong>
+                                        <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
                             </fieldset>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <fieldset class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                                {{ Form::label('password', trans('auth.password')) }} 
+                                {{ Form::label('password', trans('auth.password')) }}
                                 {{ Form::password('password', ['class' => 'form-control', 'id' => 'password', 'placeholder'=> trans('auth.password')]) }}
                                 @if ($errors->has('password'))
                                     <span class="help-block">
@@ -87,8 +56,32 @@
                             </fieldset>
                         </div>
                     </div>
+                  </div>
+
+                  <div class="box-reg">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <fieldset class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
+                                {{ Form::label('username', trans('common.username')) }}
+                                {{ Form::text('username', NULL, ['class' => 'form-control', 'id' => 'username', 'placeholder'=> trans('common.username')]) }}
+                                @if ($errors->has('username'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('username') }}</strong>
+                                    </span>
+                                @endif
+                            </fieldset>
+                        </div>
+
+                    </div>
+
 
                     <div class="row">
+                      <div class="col-md-6">
+                          <fieldset class="form-group">
+                              {{ Form::label('gender', trans('common.gender')) }}
+                              {{ Form::select('gender', array('female' => 'Female', 'male' => 'Male', 'other' => 'None'), null, ['placeholder' => trans('auth.select_gender'), 'class' => 'form-control']) }}
+                          </fieldset>
+                      </div>
                         @if(Setting::get('birthday') == "on")
                             <div class="col-md-6">
                                 <fieldset class="form-group">
@@ -105,16 +98,11 @@
                                 </fieldset>
                             </div>
                         @endif
-                            
-                        @if(Setting::get('city') == "on")
-                           <div class="col-md-6">
-                                <fieldset class="form-group">
-                                    {{ Form::label('city', trans('common.current_city')) }}<i class="optional">(optional)</i>
-                                    {{ Form::text('city', NULL, ['class' => 'form-control', 'placeholder' => trans('common.current_city')]) }}
-                                </fieldset>
-                            </div>
-                        @endif   
+
+
                     </div>
+                  </div>
+
 
                     <div class="row">
                         @if(Setting::get('captcha') == "on")
@@ -127,13 +115,13 @@
                                     </span>
                                 @endif
                             </fieldset>
-                        </div>    
-                        @endif    
+                        </div>
+                        @endif
                     </div>
-                    
+
                     {{ Form::button(trans('auth.signup_to_dashboard'), ['type' => 'submit','class' => 'btn btn-success']) }}
                 </form>
-            </div>  
+            </div>
             @if((env('GOOGLE_CLIENT_ID') != NULL && env('GOOGLE_CLIENT_SECRET') != NULL) ||
                 (env('TWITTER_CLIENT_ID') != NULL && env('TWITTER_CLIENT_SECRET') != NULL) ||
                 (env('FACEBOOK_CLIENT_ID') != NULL && env('FACEBOOK_CLIENT_SECRET') != NULL) ||
@@ -144,7 +132,7 @@
             @endif
             <ul class="list-inline social-connect">
                 @if(env('GOOGLE_CLIENT_ID') != NULL && env('GOOGLE_CLIENT_SECRET') != NULL)
-                    <li><a href="{{ url('google') }}" class="btn btn-social google-plus"><span class="social-circle"><i class="fa fa-google-plus" aria-hidden="true"></i></span></a></li> 
+                    <li><a href="{{ url('google') }}" class="btn btn-social google-plus"><span class="social-circle"><i class="fa fa-google-plus" aria-hidden="true"></i></span></a></li>
                 @endif
 
                 @if(env('TWITTER_CLIENT_ID') != NULL && env('TWITTER_CLIENT_SECRET') != NULL)
@@ -155,7 +143,7 @@
                     <li><a href="{{ url('facebook') }}" class="btn btn-social fb"><span class="social-circle"><i class="fa fa-facebook" aria-hidden="true"></i></span></a></li>
                 @endif
 
-                @if(env('LINKEDIN_CLIENT_ID') != NULL && env('LINKEDIN_CLIENT_SECRET') != NULL) 
+                @if(env('LINKEDIN_CLIENT_ID') != NULL && env('LINKEDIN_CLIENT_SECRET') != NULL)
                     <li><a href="{{ url('linkedin') }}" class="btn btn-social linkedin"><span class="social-circle"><i class="fa fa-linkedin" aria-hidden="true"></i></span></a></li>
                 @endif
             </ul>

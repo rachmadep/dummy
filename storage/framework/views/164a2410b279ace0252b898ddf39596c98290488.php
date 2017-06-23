@@ -11,7 +11,7 @@
 			<!-- <div class="cover-bottom">
 		</div> -->
 		<div class="user-timeline-name">
-			<a href="<?php echo e(url($timeline->username)); ?>"><?php echo e($timeline->name); ?></a>
+			<a href="<?php echo e(url($timeline->username)); ?>"><?php echo e('@'.$timeline->username); ?></a>
 			<?php if($timeline->user->verified): ?>
 				<span class="verified-badge bg-success">
 					<i class="fa fa-check"></i>
@@ -20,7 +20,7 @@
 		</div>
 		</div>
 	<div class="timeline-list">
-		<ul class="list-inline pagelike-links">							
+		<ul class="list-inline pagelike-links">
 			<?php if($user_post == true): ?>
 				<li class="<?php echo e(Request::segment(2) == 'posts' ? 'active' : ''); ?>"><a href="<?php echo e(url($timeline->username.'/posts')); ?>" ><span class="top-list"><?php echo e(count($timeline->posts)); ?> <?php echo e(trans('common.posts')); ?></span></a></li>
 			<?php else: ?>
@@ -29,7 +29,7 @@
 
 			<li class="<?php echo e(Request::segment(2) == 'following' ? 'active' : ''); ?>"><a href="<?php echo e(url($timeline->username.'/following')); ?>" ><span class="top-list"><?php echo e($following_count); ?> <?php echo e(trans('common.following')); ?></span></a></li>
 			<li class="<?php echo e(Request::segment(2) == 'followers' ? 'active' : ''); ?>"><a href="<?php echo e(url($timeline->username.'/followers')); ?>" ><span class="top-list"><?php echo e($followers_count); ?>  <?php echo e(trans('common.followers')); ?></span></a></li>
-			<li class="<?php echo e(Request::segment(2) == 'liked-pages' ? 'active' : ''); ?>"><a href="<?php echo e(url($timeline->username.'/liked-pages')); ?>" ><span class="top-list"><?php echo e(count($user->pageLikes)); ?> <?php echo e(trans('common.liked_pages')); ?></span></a></li>
+			<!-- <li class="<?php echo e(Request::segment(2) == 'liked-pages' ? 'active' : ''); ?>"><a href="<?php echo e(url($timeline->username.'/liked-pages')); ?>" ><span class="top-list"><?php echo e(count($user->pageLikes)); ?> <?php echo e(trans('common.liked_pages')); ?></span></a></li> -->
 			<li class="<?php echo e(Request::segment(2) == 'joined-groups' ? 'active' : ''); ?>"><a href="<?php echo e(url($timeline->username.'/joined-groups')); ?>" ><span class="top-list"><?php echo e($joined_groups_count); ?>  <?php echo e(trans('common.joined_groups')); ?></span></a></li>
 
 			<?php if($follow_confirm == "yes" && $timeline->id == Auth::user()->timeline_id): ?>
@@ -57,7 +57,7 @@
 					<li class="smallscreen-report"><a href="#" class="page-report reported" data-timeline-id="<?php echo e($timeline->id); ?>"><?php echo e(trans('common.reported')); ?></a></li>
 				<?php endif; ?>
 				<?php endif; ?>
-			
+
 
 			</ul>
 			<div class="status-button">
@@ -70,12 +70,10 @@
 					<div class="chang-user-avatar">
 						<a href="#" class="btn btn-camera change-avatar"><i class="fa fa-camera" aria-hidden="true"></i><span class="avatar-text"><?php echo e(trans('common.update_profile')); ?><span><?php echo e(trans('common.picture')); ?></span></span></a>
 					</div>
-				<?php endif; ?>			
+				<?php endif; ?>
 				<div class="user-avatar-progress hidden">
 				</div>
 			</div><!-- /timeline-user-avatar -->
 
 		</div><!-- /timeline-list -->
 	</div><!-- timeline-cover-section -->
-
-

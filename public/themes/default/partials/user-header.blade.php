@@ -11,7 +11,7 @@
 			<!-- <div class="cover-bottom">
 		</div> -->
 		<div class="user-timeline-name">
-			<a href="{{ url($timeline->username) }}">{{ $timeline->name }}</a>
+			<a href="{{ url($timeline->username) }}">{{ '@'.$timeline->username }}</a>
 			@if($timeline->user->verified)
 				<span class="verified-badge bg-success">
 					<i class="fa fa-check"></i>
@@ -20,7 +20,7 @@
 		</div>
 		</div>
 	<div class="timeline-list">
-		<ul class="list-inline pagelike-links">							
+		<ul class="list-inline pagelike-links">
 			@if($user_post == true)
 				<li class="{{ Request::segment(2) == 'posts' ? 'active' : '' }}"><a href="{{ url($timeline->username.'/posts') }}" ><span class="top-list">{{ count($timeline->posts) }} {{ trans('common.posts') }}</span></a></li>
 			@else
@@ -29,7 +29,7 @@
 
 			<li class="{{ Request::segment(2) == 'following' ? 'active' : '' }}"><a href="{{ url($timeline->username.'/following') }}" ><span class="top-list">{{ $following_count }} {{ trans('common.following') }}</span></a></li>
 			<li class="{{ Request::segment(2) == 'followers' ? 'active' : '' }}"><a href="{{ url($timeline->username.'/followers') }}" ><span class="top-list">{{ $followers_count }}  {{ trans('common.followers') }}</span></a></li>
-			<li class="{{ Request::segment(2) == 'liked-pages' ? 'active' : '' }}"><a href="{{ url($timeline->username.'/liked-pages') }}" ><span class="top-list">{{ count($user->pageLikes) }} {{ trans('common.liked_pages') }}</span></a></li>
+			<!-- <li class="{{ Request::segment(2) == 'liked-pages' ? 'active' : '' }}"><a href="{{ url($timeline->username.'/liked-pages') }}" ><span class="top-list">{{ count($user->pageLikes) }} {{ trans('common.liked_pages') }}</span></a></li> -->
 			<li class="{{ Request::segment(2) == 'joined-groups' ? 'active' : '' }}"><a href="{{ url($timeline->username.'/joined-groups') }}" ><span class="top-list">{{ $joined_groups_count }}  {{ trans('common.joined_groups') }}</span></a></li>
 
 			@if($follow_confirm == "yes" && $timeline->id == Auth::user()->timeline_id)
@@ -57,7 +57,7 @@
 					<li class="smallscreen-report"><a href="#" class="page-report reported" data-timeline-id="{{ $timeline->id }}">{{ trans('common.reported') }}</a></li>
 				@endif
 				@endif
-			
+
 
 			</ul>
 			<div class="status-button">
@@ -70,12 +70,10 @@
 					<div class="chang-user-avatar">
 						<a href="#" class="btn btn-camera change-avatar"><i class="fa fa-camera" aria-hidden="true"></i><span class="avatar-text">{{ trans('common.update_profile') }}<span>{{ trans('common.picture') }}</span></span></a>
 					</div>
-				@endif			
+				@endif
 				<div class="user-avatar-progress hidden">
 				</div>
 			</div><!-- /timeline-user-avatar -->
 
 		</div><!-- /timeline-list -->
 	</div><!-- timeline-cover-section -->
-
-

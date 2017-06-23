@@ -30,9 +30,9 @@
 									<li class="list-group-item">
 										<div class="connect-list">
 											<div class="connect-link pull-left">
-												<a href="<?php echo e(url($follower->username)); ?>">													
+												<a href="<?php echo e(url($follower->username)); ?>">
 													<img src="<?php echo e($follower->avatar); ?>" alt="<?php echo e($follower->name); ?>" class="img-icon img-30" title="<?php echo e($follower->name); ?>">
-													<?php echo e($follower->name); ?>
+													<?php echo e('@'.$follower->username); ?>
 
 												</a>
 											</div>
@@ -73,4 +73,3 @@
 
 	</div>
 </div><!-- /container -->
-

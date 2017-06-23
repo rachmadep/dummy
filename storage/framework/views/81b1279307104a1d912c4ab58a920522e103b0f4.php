@@ -1,11 +1,11 @@
 <div class="user-profile-buttons">
 	<div class="row follow-links pagelike-links">
-		<!-- This [if-1] is for checking current user timeline or diff user timeline -->	
+		<!-- This [if-1] is for checking current user timeline or diff user timeline -->
 		<?php if(Auth::user()->username != $timeline->username): ?>
-		<?php 
+		<?php
 					//php code is for checking user's follow_privacy settings
 		$user_follow ="";
-		$confirm_follow ="";						
+		$confirm_follow ="";
 		$othersSettings = $user->getOthersSettings($timeline->username);
 		if($othersSettings)
 		{
@@ -78,7 +78,7 @@
 
 					</a>
 				</div>
-			<?php else: ?>							
+			<?php else: ?>
 				<div class="col-md-6 col-sm-6 col-xs-6 hidden">
 					<a href="#" class="btn btn-options btn-block follow-user btn-default follow " data-timeline-id="<?php echo e($timeline->id); ?>">
 						<i class="fa fa-heart"></i> <?php echo e(trans('common.follow')); ?>
@@ -227,28 +227,7 @@
 </form>
 
 	<!-- my-pages -->
-	<div class="widget-pictures widget-best-pictures">
-		<div class="picture pull-left">
-			<?php echo e(trans('common.pages')); ?>
-
-		</div>
-		<div class="clearfix"></div>
-		<div class="best-pictures my-best-pictures">
-			<div class="row">
-				<?php if(count($own_pages) > 0): ?>
-				<?php foreach($own_pages as $own_page): ?>
-				<div class="col-md-2 col-sm-2 col-xs-2 best-pics">
-					<a href="<?php echo e(url($own_page->username)); ?>" class="image-hover" title="<?php echo e($own_page->name); ?>" data-toggle="tooltip" data-placement="top">
-						<img src="<?php if($own_page->avatar != NULL): ?> <?php echo e(url('page/avatar/'.$own_page->avatar)); ?> <?php else: ?> <?php echo e(url('page/avatar/default-page-avatar.png')); ?> <?php endif; ?>" alt="<?php echo e($own_page->name); ?>" title="<?php echo e($own_page->name); ?>">
-					</a>
-				</div>
-				<?php endforeach; ?>
-				<?php else: ?>
-				<div class="alert alert-warning"><?php echo e(trans('messages.no_pages')); ?></div>
-				<?php endif; ?>
-			</div><!-- /row -->
-		</div>
-	</div>
+	
 	<!-- /my pages -->
 
 	<!-- my-groups -->
@@ -282,22 +261,7 @@
 	<!-- /my pages -->
 	<?php if(Setting::get('timeline_ad') != NULL): ?>
 	<div id="link_other" class="post-filters">
-		<?php echo htmlspecialchars_decode(Setting::get('timeline_ad')); ?> 
-	</div>	
+		<?php echo htmlspecialchars_decode(Setting::get('timeline_ad')); ?>
+
+	</div>
 	<?php endif; ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

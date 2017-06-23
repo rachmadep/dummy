@@ -4,12 +4,12 @@
 	<div class="row">
 		<div class="col-md-10">
 			{!! Theme::partial('user-header',compact('timeline','user','followRequests','following_count',
-			'followers_count','follow_confirm','user_post','joined_groups_count')) !!}				
-			
+			'followers_count','follow_confirm','user_post','joined_groups_count')) !!}
+
 			<div class="row">
 				<div class=" timeline">
 					<div class="col-md-4">
-						
+
 						{!! Theme::partial('user-leftbar',compact('timeline','user','follow_user_status','own_pages','own_groups')) !!}
 					</div>
 					<div class="col-md-8">
@@ -27,9 +27,9 @@
 									<li class="list-group-item">
 										<div class="connect-list">
 											<div class="connect-link pull-left">
-												<a href="{{ url('/'.$follow->username) }}">													
+												<a href="{{ url('/'.$follow->username) }}">
 													<img src="{{ $follow->avatar }}" alt="{{ $follow->name }}" class="img-icon img-30" title="{{ $follow->name }}">
-													{{ $follow->name }}
+													{{ '@'.$follow->username }}
 												</a>
 											</div>
 											@if($timeline->id == Auth::user()->timeline_id)
@@ -65,4 +65,3 @@
 
 	</div>
 </div><!-- /container -->
-
