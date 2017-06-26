@@ -42,3 +42,8 @@
 .list-group.page-likes .list-group-item .connect-link a {
     text-transform: none;
 }
+.center-text{
+  display: inline;
+  text-align: center;
+  color: #000;
+}

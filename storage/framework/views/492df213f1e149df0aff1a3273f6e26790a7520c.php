@@ -17,6 +17,7 @@
                   <div class="box-reg">
                     <div class="row">
                         <div class="col-md-12">
+                          <label class="center-text" for=""><h4>Private Info :</h4></label>
                             <fieldset class="form-group<?php echo e($errors->has('name') ? ' has-error' : ''); ?>">
                                 <?php echo e(Form::label('name', trans('auth.name'))); ?>
 
@@ -70,6 +71,7 @@
                   <div class="box-reg">
                     <div class="row">
                         <div class="col-md-12">
+                          <label class="center-text" for=""><h4>Public Info :</h4></label>
                             <fieldset class="form-group<?php echo e($errors->has('username') ? ' has-error' : ''); ?>">
                                 <?php echo e(Form::label('username', trans('common.username'))); ?>
 

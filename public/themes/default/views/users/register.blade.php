@@ -15,6 +15,7 @@
                   <div class="box-reg">
                     <div class="row">
                         <div class="col-md-12">
+                          <label class="center-text" for=""><h4>Private Info :</h4></label>
                             <fieldset class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                                 {{ Form::label('name', trans('auth.name')) }}
                                 {{ Form::text('name', NULL, ['class' => 'form-control', 'id' => 'name', 'placeholder'=> trans('auth.name')]) }}
@@ -61,6 +62,7 @@
                   <div class="box-reg">
                     <div class="row">
                         <div class="col-md-12">
+                          <label class="center-text" for=""><h4>Public Info :</h4></label>
                             <fieldset class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
                                 {{ Form::label('username', trans('common.username')) }}
                                 {{ Form::text('username', NULL, ['class' => 'form-control', 'id' => 'username', 'placeholder'=> trans('common.username')]) }}
