@@ -2,7 +2,7 @@
 
 <div class="container">
 	<div class="row">
-		<div class="col-md-10">
+		<div class="col-md-11">
 			{!! Theme::partial('group-header',compact('timeline','group')) !!}
 
 			<div class="row">
@@ -11,7 +11,7 @@
 
 						{!! Theme::partial('group-leftbar',compact('timeline','group','group_members')) !!}
 					</div>
-					<div class="col-md-8">						
+					<div class="col-md-8">
 						<div class="panel panel-default">
 							<div class="panel-heading no-bg panel-settings">
 								<h3 class="panel-title">
@@ -26,8 +26,8 @@
 									<li class="list-group-item holder">
 										<div class="connect-list">
 											<div class="connect-link pull-left">
-												<a href="{{ $requestedUser->username }}">													
-													<img src="{{ $requestedUser->avatar }}" alt="{{ $requestedUser->name }}" class="img-icon img-30" title="{{ 
+												<a href="{{ $requestedUser->username }}">
+													<img src="{{ $requestedUser->avatar }}" alt="{{ $requestedUser->name }}" class="img-icon img-30" title="{{
 														$requestedUser->name }}">
 													{{ $requestedUser->name }}
 												</a>
@@ -35,7 +35,7 @@
 
 											<div class="follow-links pull-right">
 												<div class="left-col">
-													<a href="#" class="btn btn-to-follow btn-success accept-user accept" data-user-id="{{ $requestedUser->id }} - {{ $group_id }}"><i class="fa fa-thumbs-up"></i> {{ trans('common.accept') }} 
+													<a href="#" class="btn btn-to-follow btn-success accept-user accept" data-user-id="{{ $requestedUser->id }} - {{ $group_id }}"><i class="fa fa-thumbs-up"></i> {{ trans('common.accept') }}
 													</a>
 													<a href="#" class="btn btn-to-follow reject-user btn-danger reject" data-user-id="{{ $requestedUser->id }} - {{ $group_id }}"><i class="fa fa-thumbs-down"></i> {{ trans('common.decline') }}
 													</a>
@@ -58,8 +58,5 @@
 			</div><!-- /row -->
 		</div><!-- /col-md-10 -->
 
-		<div class="col-md-2">
-			{!! Theme::partial('timeline-rightbar') !!}
-		</div>
 	</div>
 </div><!-- /container -->

@@ -2,18 +2,18 @@
 
 <div class="container">
 	<div class="row">
-		<div class="col-md-10">
+		<div class="col-md-11">
 
 			{!! Theme::partial('group-header',compact('timeline','group')) !!}
 
 			<div class="row">
 				<div class="timeline">
 					<div class="col-md-4">
-						
+
 						{!! Theme::partial('group-leftbar',compact('timeline','group','group_members')) !!}
 					</div>
 
-					<div class="col-md-8">						
+					<div class="col-md-8">
 
 						<div class="panel panel-default">
 							<div class="panel-heading no-bg panel-settings">
@@ -34,11 +34,11 @@
 													<img src="{{ $group_admin->avatar }}" alt="{{ $group_admin->name }}" class="img-icon img-30" title="{{ $group_admin->name }}">
 													{{ $group_admin->name }}
 												</a>
-											</div>										
-											
+											</div>
+
 												@if($group->is_admin($group_admin->pivot->user_id) && $group->is_admin(Auth::user()->id))
 												<div class="pull-right follow-links">
-												
+
 												<form class="margin-right" method="POST" action="{{ url('/member/update-role/') }}">
 													{{ csrf_field() }}
 													@if(count($group_admins) > 1)
@@ -53,14 +53,14 @@
 														</div>
 														<div class="left-col col-md-4 col-sm-4 col-xs-4 padding-5">
 															<a href="#" class="btn btn-to-follow btn-default remove-member remove" data-user-id="{{ $group_admin->id }} - {{ $group_id }}">
-																<i class="fa fa-trash"></i> {{ trans('common.remove') }} 
+																<i class="fa fa-trash"></i> {{ trans('common.remove') }}
 															</a>
 														</div>
 													@endif
-												</form>											
-													
+												</form>
+
 												</div>
-												
+
 											@endif
 											<div class="clearfix"></div>
 										</div>
@@ -78,8 +78,5 @@
 			</div><!-- /row -->
 		</div><!-- /col-md-10 -->
 
-		<div class="col-md-2">
-			{!! Theme::partial('timeline-rightbar') !!}
-		</div>
 	</div>
 </div><!-- /container -->

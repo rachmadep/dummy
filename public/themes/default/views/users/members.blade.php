@@ -2,18 +2,18 @@
 
 <div class="container">
 	<div class="row">
-		<div class="col-md-10">
+		<div class="col-md-11">
 
 			{!! Theme::partial('group-header',compact('timeline','group')) !!}
-			
+
 			<div class="row">
 				<div class=" timeline">
 					<div class="col-md-4">
-						
+
 						{!! Theme::partial('group-leftbar',compact('timeline','group','group_members')) !!}
 					</div>
 
-					<div class="col-md-8">						
+					<div class="col-md-8">
 
 						<div class="panel panel-default">
 							<div class="panel-heading no-bg panel-settings">
@@ -29,15 +29,15 @@
 									<li class="list-group-item holder">
 										<div class="connect-list">
 											<div class="connect-link pull-left">
-												<a href="{{ url($group_member->username) }}">													
-													<img src="{{ $group_member->avatar }}" alt="{{ $group_member->name }}" class="img-icon img-30" title="{{ 
+												<a href="{{ url($group_member->username) }}">
+													<img src="{{ $group_member->avatar }}" alt="{{ $group_member->name }}" class="img-icon img-30" title="{{
 														$group_member->name }}">
 													{{ $group_member->name }}
 												</a>
 											</div>
 											@if($group->is_admin(Auth::user()->id))
 											<div class="pull-right follow-links">
-												<div class="row">	
+												<div class="row">
 
 												<form class="margin-right" method="POST" action="{{ url('/member/update-role/') }}">
 													{{ csrf_field() }}
@@ -55,12 +55,12 @@
 
 													<div class="col-md-4 col-sm-4 col-xs-4 padding-5">
 														<a href="#" class="btn btn-to-follow btn-default remove-member remove" data-user-id="{{ $group_member->id }} - {{ $group_id }}">
-															<i class="fa fa-trash"></i> {{ trans('common.remove') }} 
+															<i class="fa fa-trash"></i> {{ trans('common.remove') }}
 														</a>
 													</div>
-												</form>	
+												</form>
 
-													
+
 												</div>
 											</div>
 											@endif
@@ -74,7 +74,7 @@
 								<div class="alert alert-warning">{{ trans('messages.no_members') }}</div>
 								@endif
 							</div><!-- /panel-body -->
-							
+
 						</div>
 
 					</div><!-- /col-md-8 -->
@@ -82,8 +82,5 @@
 			</div><!-- /row -->
 		</div><!-- /col-md-10 -->
 
-		<div class="col-md-2">
-			{!! Theme::partial('timeline-rightbar') !!}
-		</div>
 	</div>
 </div><!-- /container -->

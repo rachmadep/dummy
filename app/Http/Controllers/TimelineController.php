@@ -404,7 +404,7 @@ class TimelineController extends AppBaseController
             preg_match_all('/(^|\s)(@\w+)/', $request->description, $usernames);
             foreach ($usernames[2] as $value) {
                 $timeline = Timeline::where('username', str_replace('@', '', $value))->first();
-                $notification = Notification::create(['user_id' => $timeline->user->id, 'post_id' => $post->id, 'notified_by' => Auth::user()->id, 'description' => Auth::user()->name.' mentioned you in his post', 'type' => 'mention', 'link' => 'post/'.$post->id]);
+                $notification = Notification::create(['user_id' => $timeline->user->id, 'post_id' => $post->id, 'notified_by' => Auth::user()->id, 'description' => '@'.Auth::user()->username.' mentioned you in his post', 'type' => 'mention', 'link' => 'post/'.$post->id]);
             }
             $timeline = Timeline::where('id', $request->timeline_id)->first();
 
@@ -422,7 +422,7 @@ class TimelineController extends AppBaseController
             }
 
             foreach ($notify_users as $notify_user) {
-                Notification::create(['user_id' => $notify_user->id, 'timeline_id' => $request->timeline_id, 'post_id' => $post->id, 'notified_by' => Auth::user()->id, 'description' => Auth::user()->name.' '.$notify_message, 'type' => $timeline->type, 'link' => $timeline->username]);
+                Notification::create(['user_id' => $notify_user->id, 'timeline_id' => $request->timeline_id, 'post_id' => $post->id, 'notified_by' => Auth::user()->id, 'description' => '@'.Auth::user()->username.' '.$notify_message, 'type' => $timeline->type, 'link' => $timeline->username]);
             }
 
 

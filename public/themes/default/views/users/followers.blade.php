@@ -2,7 +2,7 @@
 
 <div class="container">
 	<div class="row">
-		<div class="col-md-10">
+		<div class="col-md-11">
 			{!! Theme::partial('user-header',compact('timeline','user','followRequests','following_count',
 			'followers_count','follow_confirm','user_post','joined_groups_count')) !!}
 
@@ -62,9 +62,6 @@
 			</div><!-- /row -->
 		</div><!-- /col-md-10 -->
 
-		<div class="col-md-2">
-			{!! Theme::partial('timeline-rightbar') !!}
-		</div>
 
 	</div>
 </div><!-- /container -->

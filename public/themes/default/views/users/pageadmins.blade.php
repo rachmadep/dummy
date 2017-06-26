@@ -2,18 +2,18 @@
 
 <div class="container">
 	<div class="row">
-		<div class="col-md-10">
+		<div class="col-md-11">
 
 			{!! Theme::partial('page-header',compact('timeline','page')) !!}
 
 			<div class="row">
 				<div class=" timeline">
 					<div class="col-md-4">
-						
+
 						{!! Theme::partial('page-leftbar',compact('timeline','page','page_members')) !!}
 					</div>
 
-					<div class="col-md-8">						
+					<div class="col-md-8">
 
 						<div class="panel panel-default">
 							<div class="panel-heading no-bg panel-settings">
@@ -34,8 +34,8 @@
 													<img src="{{ $page_admin->avatar }}" alt="{{ $page_admin->name }}" class="img-icon img-30" title="{{ $page_admin->name }}">
 													{{ $page_admin->name }}
 												</a>
-											</div>										
-											
+											</div>
+
 												@if($page->is_admin($page_admin->pivot->user_id) && $page->is_admin(Auth::user()->id))
 												<div class="pull-right follow-links">
 												<div class="row">
@@ -54,13 +54,13 @@
 															</div>
 															<div class="left-col col-md-4 col-sm-4 col-xs-4 padding-5">
 																<a href="#" class="btn btn-to-follow btn-default remove-pagemember remove" data-user-id="{{ $page_admin->id }} - {{ $page->id }}">
-																	<i class="fa fa-trash"></i> {{ trans('common.remove') }} 
+																	<i class="fa fa-trash"></i> {{ trans('common.remove') }}
 																</a>
 															</div>
-														
+
 														@endif
 													</form>
-												
+
 												</div>
 												@endif
 											</div>
@@ -80,8 +80,5 @@
 			</div><!-- /row -->
 		</div><!-- /col-md-10 -->
 
-		<div class="col-md-2">
-			{!! Theme::partial('timeline-rightbar') !!}
-		</div>
 	</div>
 </div><!-- /container -->

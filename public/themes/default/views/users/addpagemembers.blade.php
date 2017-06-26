@@ -2,7 +2,7 @@
 
 <div class="container">
 	<div class="row">
-		<div class="col-md-10">
+		<div class="col-md-11">
 			{!! Theme::partial('page-header',compact('timeline','page')) !!}
 
 			<div class="row">
@@ -26,16 +26,13 @@
 								</form>
 								<div class="page-suggested-users"></div>
 							</div>
-							
-							
+
+
 						</div><!-- /panel -->
 					</div>
 				</div><!-- /main-content -->
 			</div><!-- /row -->
 		</div><!-- /col-md-10 -->
 
-		<div class="col-md-2">
-			{!! Theme::partial('timeline-rightbar') !!}
-		</div>
 	</div>
 </div><!-- /container -->

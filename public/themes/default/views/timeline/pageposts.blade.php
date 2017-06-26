@@ -2,7 +2,7 @@
 
 <div class="container">
 	<div class="row">
-		<div class="col-md-10">
+		<div class="col-md-11">
 			{!! Theme::partial('page-header',compact('timeline','page')) !!}
 
 			<div class="row">
@@ -12,13 +12,13 @@
 					</div>
 					<div class="col-md-8">
 						@if($timeline->type == "page")
-							
+
 							@if(($page->timeline_post_privacy == "only_admins" && $page->is_admin(Auth::user()->id)) || ($page->timeline_post_privacy == "everyone"))
 								{!! Theme::partial('create-post',compact('timeline')) !!}
-							@elseif($page->timeline_post_privacy == "everyone")	
+							@elseif($page->timeline_post_privacy == "everyone")
 								{!! Theme::partial('create-post',compact('timeline')) !!}
 							@endif
-						@endif	
+						@endif
 
 						<div class="timeline-posts">
 							@if($posts->count() > 0)
@@ -43,10 +43,5 @@
 			</div><!-- /row -->
 		</div><!-- /col-md-10 -->
 
-		<div class="col-md-2">
-			{!! Theme::partial('timeline-rightbar') !!}
-		</div>
 	</div>
 </div><!-- /container -->
-
-

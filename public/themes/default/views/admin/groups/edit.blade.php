@@ -3,10 +3,10 @@
 			<h3 class="panel-title">
 				{{ trans('admin.edit_group') }} ({{ $timeline->name }})
 			</h3>
-		</div>		
+		</div>
 	<div class="panel-body">
 		@include('flash::message')
-		
+
 		<form class="socialite-form" method="POST" action="{{ url('admin/groups/'.$username.'/edit') }}">
 			{{ csrf_field() }}
 			<fieldset class="form-group required {{ $errors->has('name') ? ' has-error' : '' }}">
@@ -24,7 +24,7 @@
 				{{ Form::label('username', trans('common.username'), ['class' => 'control-label']) }}
 				<input type="text" name="username" class="form-control content-form" placeholder="{{ trans('admin.username_placeholder') }}"  value="{{ $timeline->username }}" disabled>
 				<small class="text-muted">{{ trans('admin.group_username_text') }}</small>
-			</fieldset>	
+			</fieldset>
 
 			<fieldset class="form-group">
 				{{ Form::label('about', trans('common.about'), ['class' => 'control-label']) }}
@@ -46,13 +46,13 @@
 			<fieldset class="form-group">
 				{{ Form::label('member_privacy', trans('admin.add_privacy'), ['class' => 'control-label']) }}
 				{{ Form::select('member_privacy', array('members' => 'Members','only_admins' => 'Only admins') , $groups->member_privacy , ['class' => 'form-control']) }}
-				<small class="text-muted">{{ trans('admin.add_privacy_text') }}</small>				
+				<small class="text-muted">{{ trans('admin.add_privacy_text') }}</small>
 			</fieldset>
 
 			<fieldset class="form-group">
 				{{ Form::label('post_privacy', trans('admin.timeline_post_privacy'), ['class' => 'control-label']) }}
 				{{ Form::select('post_privacy', array('members' => 'Members', 'only_admins' => 'Only admins') , $groups->post_privacy , ['class' => 'form-control']) }}
-				<small class="text-muted">{{ trans('admin.timeline_post_privacy_text') }}</small>				
+				<small class="text-muted">{{ trans('admin.timeline_post_privacy_text') }}</small>
 			</fieldset>
 
 			<div class="pull-right">

@@ -2,19 +2,19 @@
 
 <div class="container">
 	<div class="row">
-		<div class="col-md-10">
+		<div class="col-md-11">
 			{!! Theme::partial('user-header',compact('timeline','user','followRequests','following_count',
 			'followers_count','follow_confirm','user_post','joined_groups_count')) !!}
-			
+
 
 			<div class="row">
 				<div class=" timeline">
 					<div class="col-md-4">
-						
+
 						{!! Theme::partial('user-leftbar',compact('timeline','user','follow_user_status','own_pages','own_groups')) !!}
 					</div>
 					<div class="col-md-8">
-						
+
 						<div class="panel panel-default">
 							<div class="panel-heading no-bg panel-settings">
 								<h3 class="panel-title">
@@ -71,10 +71,6 @@
 			</div><!-- /row -->
 		</div><!-- /col-md-10 -->
 
-		<div class="col-md-2">
-			{!! Theme::partial('timeline-rightbar') !!}
-		</div>
 
 	</div>
 </div><!-- /container -->
-
