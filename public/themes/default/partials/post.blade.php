@@ -86,9 +86,21 @@
      <div class="user-post-details">
        <ul class="list-unstyled no-margin">
          <li>
+
            <a href="{{ url($post->user->username) }}" title="{{ '@'.$post->user->username }}" data-toggle="tooltip" data-placement="top" class="user-name user">
              {{ '@'.$post->user->username }}
            </a>
+           @if($post->timeline->username != $post->user->username && $post->timeline->type == 'user')
+           >
+           <a href="{{ url($post->timeline->username) }}" title="{{ '@'.$post->timeline->username }}" data-toggle="tooltip" data-placement="top" class="user-name user">
+             {{ '@'.$post->timeline->username }}
+           </a>
+           @elseif($post->timeline->username != $post->user->username && $post->timeline->type == 'group')
+           >
+           <a href="{{ url($post->timeline->username) }}" title="{{ '@'.$post->timeline->username }}" data-toggle="tooltip" data-placement="top" class="user-name user">
+             {{ $post->timeline->name }}
+           </a>
+           @endif
 
            @if($post->users_tagged->count() > 0)
              {{ trans('common.with') }}

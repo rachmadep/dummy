@@ -93,10 +93,24 @@
      <div class="user-post-details">
        <ul class="list-unstyled no-margin">
          <li>
+
            <a href="<?php echo e(url($post->user->username)); ?>" title="<?php echo e('@'.$post->user->username); ?>" data-toggle="tooltip" data-placement="top" class="user-name user">
              <?php echo e('@'.$post->user->username); ?>
 
            </a>
+           <?php if($post->timeline->username != $post->user->username && $post->timeline->type == 'user'): ?>
+           >
+           <a href="<?php echo e(url($post->timeline->username)); ?>" title="<?php echo e('@'.$post->timeline->username); ?>" data-toggle="tooltip" data-placement="top" class="user-name user">
+             <?php echo e('@'.$post->timeline->username); ?>
+
+           </a>
+           <?php elseif($post->timeline->username != $post->user->username && $post->timeline->type == 'group'): ?>
+           >
+           <a href="<?php echo e(url($post->timeline->username)); ?>" title="<?php echo e('@'.$post->timeline->username); ?>" data-toggle="tooltip" data-placement="top" class="user-name user">
+             <?php echo e($post->timeline->name); ?>
+
+           </a>
+           <?php endif; ?>
 
            <?php if($post->users_tagged->count() > 0): ?>
              <?php echo e(trans('common.with')); ?>

@@ -31,6 +31,11 @@ class Post extends Model
         return $this->belongsTo('App\User');
     }
 
+    public function timeline()
+    {
+        return $this->belongsTo('App\Timeline');
+    }
+
     public function users_liked()
     {
         return $this->belongsToMany('App\User', 'post_likes', 'post_id', 'user_id');

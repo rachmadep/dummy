@@ -19,13 +19,13 @@
 					<div class="timeline">
 						<div class="col-md-4">
 							<?php if($timeline->type == "user"): ?>
-							<?php echo Theme::partial('user-leftbar',compact('timeline','user','follow_user_status','own_pages','own_groups')); ?>
+							<?php echo Theme::partial('user-leftbar',compact('timeline','user','post_group','follow_user_status','own_pages','own_groups')); ?>
 
 							<?php elseif($timeline->type == "page"): ?>
 							<?php echo Theme::partial('page-leftbar',compact('timeline','page','page_members')); ?>
 
 							<?php else: ?>
-							<?php echo Theme::partial('group-leftbar',compact('timeline','group','group_members')); ?>
+							<?php echo Theme::partial('group-leftbar',compact('timeline','group','post_group','group_members')); ?>
 
 							<?php endif; ?>
 						</div>

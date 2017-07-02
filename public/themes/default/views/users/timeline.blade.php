@@ -16,11 +16,11 @@
 					<div class="timeline">
 						<div class="col-md-4">
 							@if($timeline->type == "user")
-							{!! Theme::partial('user-leftbar',compact('timeline','user','follow_user_status','own_pages','own_groups')) !!}
+							{!! Theme::partial('user-leftbar',compact('timeline','user','post_group','follow_user_status','own_pages','own_groups')) !!}
 							@elseif($timeline->type == "page")
 							{!! Theme::partial('page-leftbar',compact('timeline','page','page_members')) !!}
 							@else
-							{!! Theme::partial('group-leftbar',compact('timeline','group','group_members')) !!}
+							{!! Theme::partial('group-leftbar',compact('timeline','group','post_group','group_members')) !!}
 							@endif
 						</div>
 

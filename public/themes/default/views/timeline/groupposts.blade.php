@@ -25,7 +25,7 @@
 
 							@if($posts->count() > 0)
 								@foreach($posts as $post)
-									{!! Theme::partial('post',compact('post','timeline','next_page_url')) !!}
+									{!! Theme::partial('post',compact('post_group', 'post','timeline','next_page_url')) !!}
 								@endforeach
 							@else
 								<div class="panel panel-default">

@@ -20,7 +20,7 @@
 						<div class="timeline-posts">
 							@if($posts->count() > 0)
 								@foreach($posts as $post)
-									{!! Theme::partial('post',compact('post','timeline','next_page_url')) !!}
+									{!! Theme::partial('post',compact('post','post_group','timeline','next_page_url')) !!}
 								@endforeach
 							@else
 								<p class="no-posts">{{ trans('messages.no_posts') }}</p>
