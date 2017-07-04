@@ -60,8 +60,18 @@ $(function () {
         url: SP_source() + 'ajax/create-post',
         beforeSubmit : function validate(formData, jqForm, options) {
           var form = jqForm[0];
-           if (!$('.post-images-upload').val() && !form.description.value && !form.youtube_video_id.value && !form.location.value && !form.soundcloud_id.value) {
+           if (!$('.post-images-upload').val() && !form.description.value && !form.youtube_video_id.value && !form.location.value && !form.soundcloud_id.value && !form.title.value) {
              alert("Your post cannot be empty!")
+
+               return false;
+           }
+           else if(!form.title.value){
+             alert("Your post title cannot be empty!")
+
+               return false;
+           }
+           else if(!form.mood.value){
+             alert("Your post mood cannot be empty!")
 
                return false;
            }

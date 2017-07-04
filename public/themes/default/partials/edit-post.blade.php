@@ -3,12 +3,12 @@
     <div class="panel-heading no-bg">
       <div class="post-author">
         <div class="user-avatar">
-            <a href="{{ url($post->user->username) }}"><img src="{{ $post->user->avatar }}" alt="{{ $post->user->name }}" title="{{ $post->user->name }}"></a>
+            <a href="{{ url($post->user->username) }}"><img src="{{ $post->user->avatar }}" alt="{{ $post->user->name }}" title="{{ '@'.$post->user->username }}"></a>
         </div>
         <div class="user-post-details">
             <ul class="list-unstyled no-margin">
                 <li>
-                  <a href="{{ url($post->user->username) }}" class="user-name user">{{ $post->user->name }}</a>
+                  <a href="{{ url($post->user->username) }}" class="user-name user">{{ '@'.$post->user->username }}</a>
                     @if($post->users_tagged->count() > 0)
                       {{ trans('common.with') }}
                       {{--*/ $post_tags = $post->users_tagged->pluck('name')->toArray() /*--}}
@@ -25,8 +25,8 @@
                         @endif
                         <a href="{{ url($user->username) }}" class="user"> {{ array_shift($post_tags) }} </a>
                       @endforeach
-                      
-                      
+
+
                     @endif
                 </li>
                 <li>
@@ -39,8 +39,16 @@
       </div>
   <div class="panel-body">
       <div class="text-wrapper">
-        
-            <textarea name="description" id="" rows="10"  class="form-control">{{ $post->description }}</textarea>
+
+            <textarea name="title" id="" rows="1"  class="form-control">{{ $post->title }}</textarea>
+            <textarea name="description" id="" rows="3"  class="form-control">{{ $post->description }}</textarea>
+            <select name="mood" class="form-control createpost-form" id="createPost" style="font-family: 'FontAwesome', Helvetica;">
+              <option value="{{ $post->mood }}" disabled selected>{{ $post->mood }}</option>
+              <option value="&#xf118 Senang">&#xf118 Senang</option>
+              <option value="&#xf11a Baik">&#xf11a Baik</option>
+              <option value="&#xf119 Sedih">&#xf119 Sedih</option>
+            </select>
+
             <input type="hidden"  name="post_id" value="{{ $post->id }}">
       </div>
   </div>

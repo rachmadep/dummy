@@ -18,7 +18,7 @@
 					<span class="input-group-btn">
 						<button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
 					</span>
-					<input type="text" id="navbar-search" data-url="<?php echo e(URL::to('api/v1/timelines')); ?>" class="form-control" placeholder="<?php echo e(trans('messages.search_placeholder')); ?>">
+					<input type="text" id="navbar-search" data-url="<?php echo e(URL::to('api/v1/timelines')); ?>" class="form-control" placeholder="Search for people, groups and hashtags">
 				</div><!-- /input-group -->
 			</form>
 			<!-- Collect the nav links, forms, and other content for toggling -->

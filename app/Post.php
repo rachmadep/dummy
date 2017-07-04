@@ -24,7 +24,7 @@ class Post extends Model
    *
    * @var array
    */
-  protected $fillable = ['timeline_id', 'description', 'title', 'user_id', 'youtube_title', 'youtube_video_id', 'location', 'soundcloud_id', 'soundcloud_title'];
+  protected $fillable = ['timeline_id', 'description', 'title', 'mood', 'krisis', 'user_id', 'youtube_title', 'youtube_video_id', 'location', 'soundcloud_id', 'soundcloud_title'];
 
     public function user()
     {

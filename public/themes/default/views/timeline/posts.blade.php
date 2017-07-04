@@ -14,7 +14,7 @@
 					</div>
 					<div class="col-md-8">
 						@if($timeline->type == "user" && $timeline_post == true)
-							{!! Theme::partial('create-post',compact('timeline')) !!}
+							{!! Theme::partial('create-post',compact('timeline', 'post')) !!}
 						@endif
 
 						<div class="timeline-posts">

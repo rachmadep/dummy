@@ -475,6 +475,7 @@ class TimelineController extends AppBaseController
         if ($post->user->id == Auth::user()->id) {
             $post->title = $request->title;
             $post->description = $request->description;
+            $post->mood = $request->mood;
             $post->save();
         }
 

@@ -3,6 +3,8 @@
    <div class="post-author">
      <div class="post-options">
        <ul class="list-inline no-margin">
+         <li><h4  style="font-family: 'FontAwesome', Helvetica;"><?php echo e($post->krisis); ?></h4></li>
+         <li><h4  style="font-family: 'FontAwesome', Helvetica;"><?php echo e($post->mood); ?></h4></li>
          <li class="dropdown"><a href="#" class="dropdown-togle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-angle-down"></i></a>
            <ul class="dropdown-menu">
              <?php if($post->notifications_user->contains(Auth::user()->id)): ?>
@@ -176,7 +178,7 @@
        $liked_names = $post->users_liked->pluck('name')->toArray();
        ?>
        <li>
-         <a href="#" class="show-users-modal" data-html="true" data-heading="<?php echo e(trans('common.likes')); ?>"  data-users="<?php echo e(implode(',', $liked_ids)); ?>" data-original-title="<?php echo e(implode('<br />', $liked_names)); ?>"><span class="count-circle"><i class="fa fa-thumbs-up"></i></span> <?php echo e($post->users_liked->count()); ?> Hugs</a>
+         <a href="#" class="show-users-modal" data-html="true" data-heading="<?php echo e(trans('common.likes')); ?>"  data-users="<?php echo e(implode(',', $liked_ids)); ?>" data-original-title="<?php echo e(implode('<br />', $liked_names)); ?>"><span class="count-circle"><i class="fa fa-heart"></i></span> <?php echo e($post->users_liked->count()); ?> Hugs</a>
        </li>
        <?php endif; ?>
 
@@ -226,12 +228,12 @@
      <ul class="list-inline footer-list">
        <?php if(!$post->users_liked->contains(Auth::user()->id)): ?>
 
-         <li><a href="#" class="like-post like-<?php echo e($post->id); ?>" data-post-id="<?php echo e($post->id); ?>"><i class="fa fa-thumbs-o-up"></i>Hug</a></li>
+         <li><a href="#" class="like-post like-<?php echo e($post->id); ?>" data-post-id="<?php echo e($post->id); ?>"><i class="fa fa-heart-o"></i>Hug</a></li>
 
-         <li class="hidden"><a href="#" class="like-post unlike-<?php echo e($post->id); ?>" data-post-id="<?php echo e($post->id); ?>"><i class="fa fa-thumbs-o-down"></i></i>Hug</a></li>
+         <li class="hidden"><a href="#" class="like-post unlike-<?php echo e($post->id); ?>" data-post-id="<?php echo e($post->id); ?>"><i class="fa fa-heart"></i></i>Hug</a></li>
        <?php else: ?>
-         <li class="hidden"><a href="#" class="like-post like-<?php echo e($post->id); ?>" data-post-id="<?php echo e($post->id); ?>"><i class="fa fa-thumbs-o-up"></i>Hug</a></li>
-         <li class="hidden">><a href="#" class="like-post unlike-<?php echo e($post->id); ?>" data-post-id="<?php echo e($post->id); ?>"><i class="fa fa-thumbs-o-down"></i></i>Hug</a></li>
+         <li class="hidden"><a href="#" class="like-post like-<?php echo e($post->id); ?>" data-post-id="<?php echo e($post->id); ?>"><i class="fa fa-heart-o"></i>Hug</a></li>
+         <li class="hidden">><a href="#" class="like-post unlike-<?php echo e($post->id); ?>" data-post-id="<?php echo e($post->id); ?>"><i class="fa fa-heart"></i></i>Hug</a></li>
        <?php endif; ?>
        <li><a href="#" class="show-comments"><i class="fa fa-comment-o"></i><?php echo e(trans('common.comment')); ?></a></li>
 

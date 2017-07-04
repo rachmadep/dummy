@@ -1,7 +1,7 @@
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     <h4 class="modal-title" id="usersModalLabel"><?php echo e($heading); ?></h4>
-</div> 
+</div>
 <div class="modal-body">
     <div class="user-follow socialite">
     <?php foreach($users as $user): ?>
@@ -12,7 +12,7 @@
                         </a>
                     </div>
                     <div class="media-body socialte-timeline follow-links">
-                        <h4 class="media-heading"><?php echo e($user->name); ?> <span class="text-muted"><?php echo e('@'.$user->username); ?></span></h4>
+                        <h4 class="media-heading"><?php echo e('@'.$user->username); ?></h4>
                         <?php if($user->timeline_id != Auth::user()->timeline_id): ?>
                             <?php if(!$user->followers->contains(Auth::user()->id)): ?>
                                 <div class="btn-follow">
@@ -21,18 +21,17 @@
                                 <div class="btn-follow hidden">
                                     <a href="#" class="btn btn-success follow-user unfollow" data-timeline-id="<?php echo e($user->timeline->id); ?>"><i class="fa fa-check"></i> <?php echo e(trans('common.following')); ?></a>
                                 </div>
-                            <?php else: ?>                            
+                            <?php else: ?>
                                 <div class="btn-follow hidden">
                                     <a href="#" class="btn btn-default follow-user follow" data-timeline-id="<?php echo e($user->timeline->id); ?>"> <i class="fa fa-heart"></i> <?php echo e(trans('common.follow')); ?></a>
                                 </div>
                                 <div class="btn-follow">
                                     <a href="#" class="btn btn-success follow-user unfollow" data-timeline-id="<?php echo e($user->timeline->id); ?>"><i class="fa fa-check"></i> <?php echo e(trans('common.following')); ?></a>
-                                </div>    
+                                </div>
                             <?php endif; ?>
-                        <?php endif; ?>    
+                        <?php endif; ?>
                     </div>
                 </div>
     <?php endforeach; ?>
 </div>
 </div>
-

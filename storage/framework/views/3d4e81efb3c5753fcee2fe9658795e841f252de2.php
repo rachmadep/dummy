@@ -63,10 +63,51 @@
 		</div>
 	</div><!-- /panel -->
 
+	<div class="panel panel-default">
+		<div class="panel-heading no-bg">
+			<h3 class="panel-title">
+				Involved Support Groups
+			</h3>
+		</div>
+		<div class="panel-body">
+			<div class="user-follow socialite">
+				<!-- Each user is represented with media block -->
+				<?php if($suggested_groups != ""): ?>
+
+				<?php foreach($suggested_groups as $suggested_group): ?>
+
+				<div class="media">
+					<div class="media-left badge-verification">
+						<a href="<?php echo e(url($suggested_group->username)); ?>">
+							<?php if($suggested_group->avatar != NULL): ?>
+							<img src="<?php echo e(url('group/avatar/'.$suggested_group->avatar)); ?>" class="img-icon" alt="<?php echo e($suggested_group->name); ?>" title="<?php echo e($suggested_group->name); ?>">
+							<?php else: ?>
+							<img src="<?php echo e(url('group/avatar/default-group-avatar.png')); ?>" class="img-icon" alt="<?php echo e($suggested_group->name); ?>" title="<?php echo e($suggested_group->name); ?>">
+							<?php endif; ?>
+						</a>
+					</div>
+					<div class="media-body socialte-timeline join-links">
+						<h4 class="media-heading"><a href="<?php echo e(url($suggested_group->username)); ?>"><?php echo e($suggested_group->name); ?> </a>
+							<span class="text-muted"><?php echo e('@'.$suggested_group->username); ?></span></h4>
+
+						</div>
+					</div>
+					<?php endforeach; ?>
+					<?php else: ?>
+					<div class="alert alert-warning">
+						<?php echo e(trans('messages.no_suggested_groups')); ?>
+
+					</div>
+					<?php endif; ?>
+
+				</div><!-- Suggested groups widget -->
+			</div>
+		</div><!-- /panel -->
+
   <div class="panel panel-default">
 		<div class="panel-heading no-bg">
 			<h3 class="panel-title">
-				Support Groups
+				All Support Groups
 			</h3>
 		</div>
 		<div class="panel-body">
@@ -89,6 +130,35 @@
 						<h4 class="media-heading"><a href="<?php echo e(url($group->username)); ?>"><?php echo e($group->name); ?> </a>
 							<span class="text-muted"><?php echo e('@'.$group->username); ?></span></h4>
 
+							<?php if(!$group->users->contains(Auth::user()->id)): ?>
+									<div class="btn-follow">
+										<a href="#" class="btn btn-options btn-block join-user btn-default join" data-timeline-id="<?php echo e($group->timeline_id); ?>">
+											<i class="fa fa-plus"></i> <?php echo e(trans('common.join')); ?>
+
+										</a>
+									</div>
+
+									<div class="btn-follow hidden">
+										<a href="#" class="btn btn-options btn-block btn-success join-user joined" data-timeline-id="<?php echo e($group->timeline_id); ?>">
+											<i class="fa fa-check"></i>  <?php echo e(trans('common.joined')); ?>
+
+										</a>
+									</div>
+								<?php else: ?>
+									<div class="btn-follow hidden">
+										<a href="#" class="btn btn-options btn-block join-user btn-default join " data-timeline-id="<?php echo e($group->timeline_id); ?>">
+											<i class="fa fa-plus"></i>  <?php echo e(trans('common.join')); ?>
+
+										</a>
+									</div>
+
+									<div class="btn-follow">
+										<a href="#" class="btn btn-options btn-block btn-success join-user joined <?php if(count($group->admins()) == 1 && $group->is_admin(Auth::user()->id)): ?> disabled <?php endif; ?> ">
+											<i class="fa fa-check"></i>  <?php echo e(trans('common.joined')); ?>
+
+										</a>
+									</div>
+								<?php endif; ?>
 
 						</div>
 					</div>
@@ -149,77 +219,7 @@
 			</div>
 		</div>
 
-		<div class="panel panel-default">
-			<div class="panel-heading no-bg">
-				<h3 class="panel-title">
-					<?php echo e(trans('common.suggested_groups')); ?>
 
-				</h3>
-			</div>
-			<div class="panel-body">
-				<div class="user-follow socialite">
-					<!-- Each user is represented with media block -->
-					<?php if($suggested_groups != ""): ?>
-
-					<?php foreach($suggested_groups as $suggested_group): ?>
-
-					<div class="media">
-						<div class="media-left badge-verification">
-							<a href="<?php echo e(url($suggested_group->username)); ?>">
-								<?php if($suggested_group->avatar != NULL): ?>
-								<img src="<?php echo e(url('group/avatar/'.$suggested_group->avatar)); ?>" class="img-icon" alt="<?php echo e($suggested_group->name); ?>" title="<?php echo e($suggested_group->name); ?>">
-								<?php else: ?>
-								<img src="<?php echo e(url('group/avatar/default-group-avatar.png')); ?>" class="img-icon" alt="<?php echo e($suggested_group->name); ?>" title="<?php echo e($suggested_group->name); ?>">
-								<?php endif; ?>
-							</a>
-						</div>
-						<div class="media-body socialte-timeline join-links">
-							<h4 class="media-heading"><a href="<?php echo e(url($suggested_group->username)); ?>"><?php echo e($suggested_group->name); ?> </a>
-								<span class="text-muted"><?php echo e('@'.$suggested_group->username); ?></span></h4>
-
-								<?php if(!$suggested_group->users->contains(Auth::user()->id)): ?>
-									<div class="btn-follow">
-										<a href="#" class="btn btn-options btn-block join-user btn-default join" data-timeline-id="<?php echo e($suggested_group->timeline_id); ?>">
-											<i class="fa fa-plus"></i> <?php echo e(trans('common.join')); ?>
-
-										</a>
-									</div>
-
-									<div class="btn-follow hidden">
-										<a href="#" class="btn btn-options btn-block btn-success join-user joined" data-timeline-id="<?php echo e($suggested_group->timeline_id); ?>">
-											<i class="fa fa-check"></i>  <?php echo e(trans('common.joined')); ?>
-
-										</a>
-									</div>
-								<?php else: ?>
-									<div class="btn-follow hidden">
-										<a href="#" class="btn btn-options btn-block join-user btn-default join " data-timeline-id="<?php echo e($suggested_group->timeline_id); ?>">
-											<i class="fa fa-plus"></i>  <?php echo e(trans('common.join')); ?>
-
-										</a>
-									</div>
-
-									<div class="btn-follow">
-										<a href="#" class="btn btn-options btn-block btn-success join-user joined <?php if(count($suggested_group->admins()) == 1 && $suggested_group->is_admin(Auth::user()->id)): ?> disabled <?php endif; ?> ">
-											<i class="fa fa-check"></i>  <?php echo e(trans('common.joined')); ?>
-
-										</a>
-									</div>
-								<?php endif; ?>
-
-							</div>
-						</div>
-						<?php endforeach; ?>
-						<?php else: ?>
-						<div class="alert alert-warning">
-							<?php echo e(trans('messages.no_suggested_groups')); ?>
-
-						</div>
-						<?php endif; ?>
-
-					</div><!-- Suggested groups widget -->
-				</div>
-			</div><!-- /panel -->
 
 			<?php if(Setting::get('home_ad') != NULL): ?>
 			<div id="link_other" class="post-filters">

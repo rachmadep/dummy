@@ -32,7 +32,7 @@ function suggestedUsers()
 
 function suggestedGroups()
 {
-    $suggested_groups = App\Group::whereNotIn('id', Auth::user()->groups()->pluck('group_id'))->where('type', 'open')->get();
+    $suggested_groups = App\Group::whereIn('id', Auth::user()->groups()->pluck('group_id'))->where('type', 'open')->get();
 
     if (count($suggested_groups) > 0) {
         if (count($suggested_groups) > (int) Setting::get('min_items_page', 3)) {

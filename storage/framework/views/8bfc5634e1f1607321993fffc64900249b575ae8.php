@@ -23,7 +23,7 @@
 						<div class="timeline-posts">
 							<?php if($posts->count() > 0): ?>
 								<?php foreach($posts as $post): ?>
-									<?php echo Theme::partial('post',compact('post','timeline','next_page_url')); ?>
+									<?php echo Theme::partial('post',compact('post','post_group','timeline','next_page_url')); ?>
 
 								<?php endforeach; ?>
 							<?php else: ?>

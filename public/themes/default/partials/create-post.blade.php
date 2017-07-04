@@ -8,9 +8,14 @@
             </div>
         </div>
         <div class="panel-body">
-          <textarea name="title" class="form-control createpost-form comment" cols="30" rows="1" id="createPost" cols="30" rows="2" placeholder="Post Title"></textarea>
-          <textarea name="description" class="form-control createpost-form comment" cols="30" rows="3" id="createPost" cols="30" rows="2" placeholder="{{ trans('messages.post-placeholder') }}"></textarea>
-
+          <textarea name="title" class="form-control createpost-form comment" id="createPost"id="createPost" cols="30" rows="1" placeholder="Post Title"></textarea>
+          <textarea name="description" class="form-control createpost-form comment" cols="30" rows="2" id="createPost" cols="30" rows="2" placeholder="{{ trans('messages.post-placeholder') }}"></textarea>
+          <!-- <select name="mood" class="form-control createpost-form" id="createPost" style="font-family: 'FontAwesome', Helvetica;">
+            <option value="" disabled selected>What's your mood?</option>
+            <option value="&#xf118 Senang">&#xf118 Senang</option>
+            <option value="&#xf11a Baik">&#xf11a Baik</option>
+            <option value="&#xf119 Sedih">&#xf119 Sedih</option>
+          </select> -->
 
                 <div class="user-tags-added" style="display:none">
                     &nbsp; -- {{ trans('common.with') }}
@@ -72,13 +77,25 @@
         <div class="panel-footer">
             <ul class="list-inline left-list">
                 <li><a href="#" id="addUserTags"><i class="fa fa-user-plus"></i></a></li>
-                <li><a href="#" id="imageUpload"><i class="fa fa-camera-retro"></i></a></li>
+                <!-- <li><a href="#" id="imageUpload"><i class="fa fa-camera-retro"></i></a></li>
                 <li><a href="#" id="musicUpload"><i class="fa fa-music"></i></a></li>
-                <li><a href="#" id="videoUpload"><i class="fa fa-film"></i></a></li>
+                <li><a href="#" id="videoUpload"><i class="fa fa-film"></i></a></li> -->
                 <li><a href="#" id="locationUpload"><i class="fa fa-map-marker"></i></a></li>
                 <li><a href="#" id="emoticons"><i class="fa fa-smile-o"></i></a></li>
             </ul>
             <ul class="list-inline right-list">
+                <li style="font-family: 'FontAwesome', Helvetica;">
+                    <input type="checkbox" id="checkbox_id" name="krisis" value="&#xf071 Dalam Krisis">
+                    <label for="checkbox_id" style="font-family: 'FontAwesome', Helvetica;">&#xf071 Saya dalam krisis</label>
+                </li>
+                <li>
+                  <select name="mood" class="form-control createpost-form" id="createPost" style="font-family: 'FontAwesome', Helvetica;">
+                    <option value="" disabled selected>What's your mood?</option>
+                    <option class="hijau" value="&#xf118 Senang">&#xf118 Senang</option>
+                    <option class="kuning" value="&#xf11a Baik">&#xf11a Baik</option>
+                    <option class="merah" value="&#xf119 Sedih">&#xf119 Sedih</option>
+                  </select>
+                </li>
                 <li><button type="submit" class="btn btn-submit btn-success">{{ trans('common.post') }}</button></li>
             </ul>
 

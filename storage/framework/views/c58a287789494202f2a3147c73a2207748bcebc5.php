@@ -1,29 +1,29 @@
-  <?php 
-  $display_comment ="";           
-  $user_setting =""; 
+  <?php
+  $display_comment ="";
+  $user_setting ="";
   $user_follower = $post->chkUserFollower(Auth::user()->id,$post->user_id);
   $user_setting = $post->chkUserSettings($post->user_id);
-  
+
 
   if($user_follower != NULL)
   {
     if($user_follower == "only_follow") {
       $display_comment = "only_follow";
     }elseif ($user_follower == "everyone") {
-      $display_comment = "everyone"; 
+      $display_comment = "everyone";
     }
   }
   else{
     if($user_setting){
       if($user_setting == "everyone"){
         $user_setting = "everyone";
-      }            
+      }
     }
   }
 
   ?>
-  <ul class="list-unstyled main-comment comment<?php echo e($comment->id); ?> <?php if($comment->replies()->count() > 0): ?> has-replies <?php endif; ?>" id="comment<?php echo e($comment->id); ?>">    
-    <li> 
+  <ul class="list-unstyled main-comment comment<?php echo e($comment->id); ?> <?php if($comment->replies()->count() > 0): ?> has-replies <?php endif; ?>" id="comment<?php echo e($comment->id); ?>">
+    <li>
       <div class="comments delete_comment_list"> <!-- main-comment -->
         <div class="commenter-avatar">
           <a href="#"><img src="<?php echo e($comment->user->avatar); ?>" title="<?php echo e($comment->user->name); ?>" alt="<?php echo e($comment->user->name); ?>"></a>
@@ -34,7 +34,7 @@
             <a href="#" class="delete-comment delete_comment" data-commentdelete-id="<?php echo e($comment->id); ?>"><i class="fa fa-times"></i></a>
             <?php endif; ?>
             <div class="commenter-name">
-              <a href="<?php echo e(url($comment->user->username)); ?>"><?php echo e($comment->user->name); ?></a><span class="comment-description"><?php echo e($comment->description); ?></span>
+              <a href="<?php echo e(url($comment->user->username)); ?>"><?php echo e('@'.$comment->user->username); ?></a><span class="comment-description"><?php echo e($comment->description); ?></span>
             </div>
             <ul class="list-inline comment-options">
 
@@ -46,7 +46,7 @@
               <li><a href="#" class="text-capitalize like-comment unlike" data-comment-id="<?php echo e($comment->id); ?>"><?php echo e(trans('common.unlike')); ?></a></li>
               <?php endif; ?>
               <li>.</li>
-              <li><a href="#" class="show-comment-reply"><?php echo e(trans('common.reply')); ?></a></li>    
+              <li><a href="#" class="show-comment-reply"><?php echo e(trans('common.reply')); ?></a></li>
               <li>.</li>
               <?php if($comment->comments_liked->count() != null): ?>
               <li><a href="#" class="show-likes like3-<?php echo e($comment->id); ?>"><i class="fa fa-thumbs-up"></i><?php echo e($comment->comments_liked->count()); ?></a></li>
@@ -77,7 +77,7 @@
         </div>
         <div class="clearfix"></div>
       </div><!-- to-comment -->
-      <?php endif; ?> 
+      <?php endif; ?>
     </li>
     <?php /* replies goes here */ ?>
     <?php if($comment->replies()->count() > 0): ?>

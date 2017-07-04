@@ -3,12 +3,12 @@
     <div class="panel-heading no-bg">
       <div class="post-author">
         <div class="user-avatar">
-            <a href="<?php echo e(url($post->user->username)); ?>"><img src="<?php echo e($post->user->avatar); ?>" alt="<?php echo e($post->user->name); ?>" title="<?php echo e($post->user->name); ?>"></a>
+            <a href="<?php echo e(url($post->user->username)); ?>"><img src="<?php echo e($post->user->avatar); ?>" alt="<?php echo e($post->user->name); ?>" title="<?php echo e('@'.$post->user->username); ?>"></a>
         </div>
         <div class="user-post-details">
             <ul class="list-unstyled no-margin">
                 <li>
-                  <a href="<?php echo e(url($post->user->username)); ?>" class="user-name user"><?php echo e($post->user->name); ?></a>
+                  <a href="<?php echo e(url($post->user->username)); ?>" class="user-name user"><?php echo e('@'.$post->user->username); ?></a>
                     <?php if($post->users_tagged->count() > 0): ?>
                       <?php echo e(trans('common.with')); ?>
 
@@ -27,8 +27,8 @@
                         <?php endif; ?>
                         <a href="<?php echo e(url($user->username)); ?>" class="user"> <?php echo e(array_shift($post_tags)); ?> </a>
                       <?php endforeach; ?>
-                      
-                      
+
+
                     <?php endif; ?>
                 </li>
                 <li>
@@ -42,8 +42,16 @@
       </div>
   <div class="panel-body">
       <div class="text-wrapper">
-        
-            <textarea name="description" id="" rows="10"  class="form-control"><?php echo e($post->description); ?></textarea>
+
+            <textarea name="title" id="" rows="1"  class="form-control"><?php echo e($post->title); ?></textarea>
+            <textarea name="description" id="" rows="3"  class="form-control"><?php echo e($post->description); ?></textarea>
+            <select name="mood" class="form-control createpost-form" id="createPost" style="font-family: 'FontAwesome', Helvetica;">
+              <option value="<?php echo e($post->mood); ?>" disabled selected><?php echo e($post->mood); ?></option>
+              <option value="&#xf118 Senang">&#xf118 Senang</option>
+              <option value="&#xf11a Baik">&#xf11a Baik</option>
+              <option value="&#xf119 Sedih">&#xf119 Sedih</option>
+            </select>
+
             <input type="hidden"  name="post_id" value="<?php echo e($post->id); ?>">
       </div>
   </div>

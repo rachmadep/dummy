@@ -24,7 +24,7 @@
                 @endif
                 <a target="_blank" href="{{ url($user->username) }}" class="user"> {{ array_shift($post_tags) }} </a>
               @endforeach
-            
+
             @endif
           </li>
           <li>
@@ -32,7 +32,7 @@
               {{ $post->created_at }}
             </time>
             @if($post->location != NULL )
-              {{ trans('common.at') }} 
+              {{ trans('common.at') }}
               <span class="post-place">
                 <a target="_blank" href="{{ url('/get-location/'.$post->location) }}"><i class="fa fa-map-marker"></i> {{ $post->location }}</a>
               </span>
@@ -47,7 +47,7 @@
         <p>{{ $post->description }}</p>
         <div class="post-image-holder  @if(count($post->images()->get()) == 1) single-image @endif">
           @foreach($post->images()->get() as $postImage)
-          <a target="_blank" href="{{ url('/post/'.$post->id) }}"><img src="{{ url('user/gallery/'.$postImage->source) }}"  title="{{ $post->user->name }}" alt="{{ $post->user->name }}"></a>
+          <a target="_blank" href="{{ url('/post/'.$post->id) }}"><img src="{{ url('user/gallery/'.$postImage->source) }}"  title="{{ '@'.$post->user->username }}" alt="{{ $post->user->username }}"></a>
           @endforeach
         </div>
       </div>
@@ -60,7 +60,7 @@
       </div>
       @endif
       <ul class="actions-count list-inline">
-        
+
         @if($post->users_liked()->count() > 0)
         <?php
         $liked_ids = $post->users_liked->pluck('id')->toArray();
@@ -70,13 +70,13 @@
           <a target="_blank" href="{{ url('/post/'.$post->id) }}"><span class="count-circle"><i class="fa fa-thumbs-up"></i></span> {{ $post->users_liked->count() }} {{ trans('common.likes') }}</a>
         </li>
         @endif
-        
+
         @if($post->comments->count() > 0)
         <li>
           <a target="_blank" href="{{ url('/post/'.$post->id) }}"><span class="count-circle"><i class="fa fa-comment"></i></span>{{ $post->comments->count() }} {{ trans('common.comments') }}</a>
         </li>
         @endif
-        
+
         @if($post->shares->count() > 0)
         <?php
         $shared_ids = $post->shares->pluck('id')->toArray();
@@ -85,7 +85,7 @@
           <a target="_blank" href="{{ url('/post/'.$post->id) }}"><span class="count-circle"><i class="fa fa-share"></i></span> {{ $post->shares->count() }} {{ trans('common.shares') }}</a>
         </li>
         @endif
-        
+
 
       </ul>
     </div>

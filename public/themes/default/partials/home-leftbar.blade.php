@@ -56,10 +56,50 @@
 		</div>
 	</div><!-- /panel -->
 
+	<div class="panel panel-default">
+		<div class="panel-heading no-bg">
+			<h3 class="panel-title">
+				Involved Support Groups
+			</h3>
+		</div>
+		<div class="panel-body">
+			<div class="user-follow socialite">
+				<!-- Each user is represented with media block -->
+				@if($suggested_groups != "")
+
+				@foreach($suggested_groups as $suggested_group)
+
+				<div class="media">
+					<div class="media-left badge-verification">
+						<a href="{{ url($suggested_group->username) }}">
+							@if($suggested_group->avatar != NULL)
+							<img src="{{ url('group/avatar/'.$suggested_group->avatar) }}" class="img-icon" alt="{{ $suggested_group->name }}" title="{{ $suggested_group->name }}">
+							@else
+							<img src="{{ url('group/avatar/default-group-avatar.png') }}" class="img-icon" alt="{{ $suggested_group->name }}" title="{{ $suggested_group->name }}">
+							@endif
+						</a>
+					</div>
+					<div class="media-body socialte-timeline join-links">
+						<h4 class="media-heading"><a href="{{ url($suggested_group->username) }}">{{ $suggested_group->name }} </a>
+							<span class="text-muted">{{ '@'.$suggested_group->username }}</span></h4>
+
+						</div>
+					</div>
+					@endforeach
+					@else
+					<div class="alert alert-warning">
+						{{ trans('messages.no_suggested_groups') }}
+					</div>
+					@endif
+
+				</div><!-- Suggested groups widget -->
+			</div>
+		</div><!-- /panel -->
+
   <div class="panel panel-default">
 		<div class="panel-heading no-bg">
 			<h3 class="panel-title">
-				Support Groups
+				All Support Groups
 			</h3>
 		</div>
 		<div class="panel-body">
@@ -82,6 +122,31 @@
 						<h4 class="media-heading"><a href="{{ url($group->username) }}">{{ $group->name }} </a>
 							<span class="text-muted">{{ '@'.$group->username }}</span></h4>
 
+							@if(!$group->users->contains(Auth::user()->id))
+									<div class="btn-follow">
+										<a href="#" class="btn btn-options btn-block join-user btn-default join" data-timeline-id="{{ $group->timeline_id }}">
+											<i class="fa fa-plus"></i> {{ trans('common.join') }}
+										</a>
+									</div>
+
+									<div class="btn-follow hidden">
+										<a href="#" class="btn btn-options btn-block btn-success join-user joined" data-timeline-id="{{ $group->timeline_id }}">
+											<i class="fa fa-check"></i>  {{ trans('common.joined') }}
+										</a>
+									</div>
+								@else
+									<div class="btn-follow hidden">
+										<a href="#" class="btn btn-options btn-block join-user btn-default join " data-timeline-id="{{ $group->timeline_id }}">
+											<i class="fa fa-plus"></i>  {{ trans('common.join') }}
+										</a>
+									</div>
+
+									<div class="btn-follow">
+										<a href="#" class="btn btn-options btn-block btn-success join-user joined @if(count($group->admins()) == 1 && $group->is_admin(Auth::user()->id)) disabled @endif ">
+											<i class="fa fa-check"></i>  {{ trans('common.joined') }}
+										</a>
+									</div>
+								@endif
 
 						</div>
 					</div>
@@ -140,71 +205,7 @@
 			</div>
 		</div>
 
-		<div class="panel panel-default">
-			<div class="panel-heading no-bg">
-				<h3 class="panel-title">
-					{{ trans('common.suggested_groups') }}
-				</h3>
-			</div>
-			<div class="panel-body">
-				<div class="user-follow socialite">
-					<!-- Each user is represented with media block -->
-					@if($suggested_groups != "")
 
-					@foreach($suggested_groups as $suggested_group)
-
-					<div class="media">
-						<div class="media-left badge-verification">
-							<a href="{{ url($suggested_group->username) }}">
-								@if($suggested_group->avatar != NULL)
-								<img src="{{ url('group/avatar/'.$suggested_group->avatar) }}" class="img-icon" alt="{{ $suggested_group->name }}" title="{{ $suggested_group->name }}">
-								@else
-								<img src="{{ url('group/avatar/default-group-avatar.png') }}" class="img-icon" alt="{{ $suggested_group->name }}" title="{{ $suggested_group->name }}">
-								@endif
-							</a>
-						</div>
-						<div class="media-body socialte-timeline join-links">
-							<h4 class="media-heading"><a href="{{ url($suggested_group->username) }}">{{ $suggested_group->name }} </a>
-								<span class="text-muted">{{ '@'.$suggested_group->username }}</span></h4>
-
-								@if(!$suggested_group->users->contains(Auth::user()->id))
-									<div class="btn-follow">
-										<a href="#" class="btn btn-options btn-block join-user btn-default join" data-timeline-id="{{ $suggested_group->timeline_id }}">
-											<i class="fa fa-plus"></i> {{ trans('common.join') }}
-										</a>
-									</div>
-
-									<div class="btn-follow hidden">
-										<a href="#" class="btn btn-options btn-block btn-success join-user joined" data-timeline-id="{{ $suggested_group->timeline_id }}">
-											<i class="fa fa-check"></i>  {{ trans('common.joined') }}
-										</a>
-									</div>
-								@else
-									<div class="btn-follow hidden">
-										<a href="#" class="btn btn-options btn-block join-user btn-default join " data-timeline-id="{{ $suggested_group->timeline_id }}">
-											<i class="fa fa-plus"></i>  {{ trans('common.join') }}
-										</a>
-									</div>
-
-									<div class="btn-follow">
-										<a href="#" class="btn btn-options btn-block btn-success join-user joined @if(count($suggested_group->admins()) == 1 && $suggested_group->is_admin(Auth::user()->id)) disabled @endif ">
-											<i class="fa fa-check"></i>  {{ trans('common.joined') }}
-										</a>
-									</div>
-								@endif
-
-							</div>
-						</div>
-						@endforeach
-						@else
-						<div class="alert alert-warning">
-							{{ trans('messages.no_suggested_groups') }}
-						</div>
-						@endif
-
-					</div><!-- Suggested groups widget -->
-				</div>
-			</div><!-- /panel -->
 
 			@if(Setting::get('home_ad') != NULL)
 			<div id="link_other" class="post-filters">
