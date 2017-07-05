@@ -13,10 +13,16 @@
 			</a>
 		</div>
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-4">
-			
-							
+
+
 			@if (Auth::guest())
 			<ul class="nav navbar-nav navbar-right">
+				<li class="logout">
+					<a href="{{ url('/about') }}"><i class="fa fa-users" aria-hidden="true"></i> About Us</a>
+				</li>
+				<li class="logout">
+					<a href="{{ url('/faq') }}"><i class="fa fa-ticket" aria-hidden="true"></i> FAQ</a>
+				</li>
 				<li class="logout">
 					<a href="{{ url('/register') }}"><i class="fa fa-sign-in" aria-hidden="true"></i> {{ trans('common.join') }}</a>
 				</li>
@@ -48,5 +54,4 @@
 	            @endif
 	        </div><!-- /.navbar-collapse -->
 	    </div><!-- /.container-fluid -->
-	</nav>	
-	
+	</nav>

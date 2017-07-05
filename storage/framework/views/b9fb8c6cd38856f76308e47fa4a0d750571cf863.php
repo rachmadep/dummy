@@ -3,8 +3,8 @@
    <div class="post-author">
      <div class="post-options">
        <ul class="list-inline no-margin">
-         <li><h4  style="font-family: 'FontAwesome', Helvetica;"><?php echo e($post->krisis); ?></h4></li>
-         <li><h4  style="font-family: 'FontAwesome', Helvetica;"><?php echo e($post->mood); ?></h4></li>
+         <!-- <li><h4  style="font-family: 'FontAwesome', Helvetica;"><?php echo e($post->krisis); ?></h4></li>
+         <li><h4  style="font-family: 'FontAwesome', Helvetica;"><?php echo e($post->mood); ?></h4></li> -->
          <li class="dropdown"><a href="#" class="dropdown-togle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-angle-down"></i></a>
            <ul class="dropdown-menu">
              <?php if($post->notifications_user->contains(Auth::user()->id)): ?>
@@ -93,8 +93,9 @@
        <a href="<?php echo e(url($post->user->username)); ?>"><img src="<?php echo e($post->user->avatar); ?>" alt="<?php echo e($post->user->name); ?>" title="<?php echo e($post->user->name); ?>"></a>
      </div>
      <div class="user-post-details">
-       <ul class="list-unstyled no-margin">
-         <li>
+
+         <ul class="list-unstyled no-margin">
+          <li>
 
            <a href="<?php echo e(url($post->user->username)); ?>" title="<?php echo e('@'.$post->user->username); ?>" data-toggle="tooltip" data-placement="top" class="user-name user">
              <?php echo e('@'.$post->user->username); ?>
@@ -113,6 +114,7 @@
 
            </a>
            <?php endif; ?>
+
 
            <?php if($post->users_tagged->count() > 0): ?>
              <?php echo e(trans('common.with')); ?>
@@ -135,20 +137,33 @@
 
            <?php endif; ?>
          </li>
-         <li>
-           <time class="post-time timeago" datetime="<?php echo e($post->created_at); ?>" title="<?php echo e($post->created_at); ?>">
-             <?php echo e($post->created_at); ?>
+           <ul class="list-inline no-margin">
+             <li style="padding-left: 0px; padding-right: 0px;">
+                 <li>
+                   <time class="post-time timeago" datetime="<?php echo e($post->created_at); ?>" title="<?php echo e($post->created_at); ?>">
+                     <?php echo e($post->created_at); ?>
 
-           </time>
-           <?php if($post->location != NULL ): ?>
-           <?php echo e(trans('common.at')); ?> <span class="post-place">
-             <a target="_blank" href="<?php echo e(url('/get-location/'.$post->location)); ?>">
-               <i class="fa fa-map-marker"></i> <?php echo e($post->location); ?>
+                   </time>
+                   <?php if($post->location != NULL ): ?>
+                   <?php echo e(trans('common.at')); ?> <span class="post-place">
+                     <a target="_blank" href="<?php echo e(url('/get-location/'.$post->location)); ?>">
+                       <i class="fa fa-map-marker"></i> <?php echo e($post->location); ?>
 
-             </a>
-             </span></li>
-           <?php endif; ?>
+                     </a>
+                     </span>
+                  </li>
+                   <?php endif; ?>
+             </li>
+             <li style="float: right;"><h4  style="font-family: 'FontAwesome', Helvetica; float: right;"><?php echo e($post->krisis); ?></h4></li>
+             <li style="float: right;"><h4  style="font-family: 'FontAwesome', Helvetica; float: right;"><?php echo e($post->mood); ?></h4></li>
+           </ul>
          </ul>
+
+
+
+
+
+
        </div>
      </div>
    </div>

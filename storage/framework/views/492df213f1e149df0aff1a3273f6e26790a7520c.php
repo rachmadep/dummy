@@ -136,7 +136,7 @@
                         <?php endif; ?>
                     </div>
 
-                    <?php echo e(Form::button(trans('auth.signup_to_dashboard'), ['type' => 'submit','class' => 'btn btn-success', 'action' => 'http://openears.id/'])); ?>
+                    <?php echo e(Form::button('Sign Up', ['type' => 'submit','class' => 'btn btn-success', 'action' => 'http://openears.id/'])); ?>
 
                 </form>
             </div>

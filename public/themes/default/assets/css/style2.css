@@ -4,10 +4,21 @@
   background: #fff;
   border: 1px solid #e6eaee;
   border-radius: 4px;
-  padding: 25px;
+  padding: 10px 20px;
   margin-bottom: 10px;
 }
-
+.login-bottom {
+    padding: 5px 30px;
+}
+.login-block {
+    width: 550px;
+    padding-top: 110px;
+}
+.faq-block {
+    width: 70%;
+    margin: 0 auto;
+    padding-top: 100px;
+}
 .mini-profile .avatar-profile .avatar-details .avatar-name a {
     text-transform: none;
 }
@@ -72,6 +83,12 @@
     margin-bottom: 0;
 }
 
+.list-inline li h4{
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 5px !important;
+}
+
 .hijau{
   color : green;
 }
@@ -80,4 +97,15 @@
 }
 .merah{
   color:red;
+}
+
+.panel-post .panel-heading .post-author .post-options {
+    margin-top: 0px;
+}
+.panel-post .panel-heading .post-author .user-post-details ul {
+     padding-left: 0px;
+}
+
+.panel-post .panel-heading .post-author .user-post-details li .post-time {
+    margin-right: 0px;
 }

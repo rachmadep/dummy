@@ -172,6 +172,30 @@ class AuthController extends Controller
         return $theme->scope('users.register')->render();
     }
 
+    public function faq()
+    {
+        // if (Auth::user()) {
+        //     return Redirect::to('/');
+        // }
+
+        $theme = Theme::uses(Setting::get('current_theme', 'default'))->layout('guest');
+        $theme->setTitle('FAQ | '.Setting::get('site_title').' | '.Setting::get('site_tagline'));
+
+        return $theme->scope('users.faq')->render();
+    }
+
+    public function about()
+    {
+        // if (Auth::user()) {
+        //     return Redirect::to('/');
+        // }
+
+        $theme = Theme::uses(Setting::get('current_theme', 'default'))->layout('guest');
+        $theme->setTitle('About Us | '.Setting::get('site_title').' | '.Setting::get('site_tagline'));
+
+        return $theme->scope('users.about')->render();
+    }
+
     protected function registerUser(Request $request, $socialLogin = false)
     {
         if (Setting::get('captcha') == 'on' && !$socialLogin) {

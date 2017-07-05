@@ -121,7 +121,7 @@
                         @endif
                     </div>
 
-                    {{ Form::button(trans('auth.signup_to_dashboard'), ['type' => 'submit','class' => 'btn btn-success', 'action' => 'http://openears.id/']) }}
+                    {{ Form::button('Sign Up', ['type' => 'submit','class' => 'btn btn-success', 'action' => 'http://openears.id/']) }}
                 </form>
             </div>
             @if((env('GOOGLE_CLIENT_ID') != NULL && env('GOOGLE_CLIENT_SECRET') != NULL) ||

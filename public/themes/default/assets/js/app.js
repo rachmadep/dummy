@@ -1,6 +1,15 @@
 document_title = document.title;
 $(function () {
 
+  $( "h4:contains('Senang')" ).css( "color", "green" );
+  $( "h4:contains('Baik')" ).css( "color", "#b3b302" );
+  $( "h4:contains('Sedih')" ).css( "color", "red" );
+  $( "h4:contains('Dalam Krisis')" ).css( "color", "red" );
+
+  $( "select:contains('Senang')" ).css( "color", "green" );
+  $( "select:contains('Baik')" ).css( "color", "#b3b302" );
+  $( "select:contains('Sedih')" ).css( "color", "red" );
+
   $('#link_other a').attr('target', '_blank');
     // $.fn.isolatedScroll = function() {
     //     this.bind('mousewheel DOMMouseScroll', function (e) {

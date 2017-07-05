@@ -3,8 +3,8 @@
    <div class="post-author">
      <div class="post-options">
        <ul class="list-inline no-margin">
-         <li><h4  style="font-family: 'FontAwesome', Helvetica;">{{ $post->krisis }}</h4></li>
-         <li><h4  style="font-family: 'FontAwesome', Helvetica;">{{ $post->mood }}</h4></li>
+         <!-- <li><h4  style="font-family: 'FontAwesome', Helvetica;">{{ $post->krisis }}</h4></li>
+         <li><h4  style="font-family: 'FontAwesome', Helvetica;">{{ $post->mood }}</h4></li> -->
          <li class="dropdown"><a href="#" class="dropdown-togle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-angle-down"></i></a>
            <ul class="dropdown-menu">
              @if($post->notifications_user->contains(Auth::user()->id))
@@ -86,8 +86,9 @@
        <a href="{{ url($post->user->username) }}"><img src="{{ $post->user->avatar }}" alt="{{ $post->user->name }}" title="{{ $post->user->name }}"></a>
      </div>
      <div class="user-post-details">
-       <ul class="list-unstyled no-margin">
-         <li>
+
+         <ul class="list-unstyled no-margin">
+          <li>
 
            <a href="{{ url($post->user->username) }}" title="{{ '@'.$post->user->username }}" data-toggle="tooltip" data-placement="top" class="user-name user">
              {{ '@'.$post->user->username }}
@@ -103,6 +104,7 @@
              {{ $post->timeline->name }}
            </a>
            @endif
+
 
            @if($post->users_tagged->count() > 0)
              {{ trans('common.with') }}
@@ -123,18 +125,31 @@
 
            @endif
          </li>
-         <li>
-           <time class="post-time timeago" datetime="{{ $post->created_at }}" title="{{ $post->created_at }}">
-             {{ $post->created_at }}
-           </time>
-           @if($post->location != NULL )
-           {{ trans('common.at') }} <span class="post-place">
-             <a target="_blank" href="{{ url('/get-location/'.$post->location) }}">
-               <i class="fa fa-map-marker"></i> {{ $post->location }}
-             </a>
-             </span></li>
-           @endif
+           <ul class="list-inline no-margin">
+             <li style="padding-left: 0px; padding-right: 0px;">
+                 <li>
+                   <time class="post-time timeago" datetime="{{ $post->created_at }}" title="{{ $post->created_at }}">
+                     {{ $post->created_at }}
+                   </time>
+                   @if($post->location != NULL )
+                   {{ trans('common.at') }} <span class="post-place">
+                     <a target="_blank" href="{{ url('/get-location/'.$post->location) }}">
+                       <i class="fa fa-map-marker"></i> {{ $post->location }}
+                     </a>
+                     </span>
+                  </li>
+                   @endif
+             </li>
+             <li style="float: right;"><h4  style="font-family: 'FontAwesome', Helvetica; float: right;">{{ $post->krisis }}</h4></li>
+             <li style="float: right;"><h4  style="font-family: 'FontAwesome', Helvetica; float: right;">{{ $post->mood }}</h4></li>
+           </ul>
          </ul>
+
+
+
+
+
+
        </div>
      </div>
    </div>

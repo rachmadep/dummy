@@ -74,6 +74,9 @@ Route::get('/login', 'Auth\AuthController@getLogin');
 Route::post('/login', 'Auth\AuthController@login');
 
 // Register
+Route::get('/faq', 'Auth\AuthController@faq');
+Route::get('/about', 'Auth\AuthController@about');
+
 Route::get('/register', 'Auth\AuthController@register');
 
 Route::post('/register', 'Auth\AuthController@registerUser');
