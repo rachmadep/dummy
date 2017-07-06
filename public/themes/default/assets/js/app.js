@@ -1,6 +1,7 @@
 document_title = document.title;
 $(function () {
 
+
   $( "h4:contains('Senang')" ).css( "color", "green" );
   $( "h4:contains('Baik')" ).css( "color", "#b3b302" );
   $( "h4:contains('Sedih')" ).css( "color", "red" );

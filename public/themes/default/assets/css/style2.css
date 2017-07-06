@@ -109,3 +109,166 @@
 .panel-post .panel-heading .post-author .user-post-details li .post-time {
     margin-right: 0px;
 }
+
+/* The side navigation menu */
+.sidenav {
+    height: 100%; /* 100% Full-height */
+    width: 0; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 85px;
+    left: 0;
+    background-color: #eff3f6; /* Black*/
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px; /* Place content 60px from the top */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+}
+
+/* The navigation menu links */
+.sidenav a {
+    text-decoration: none;
+    transition: 0.3s
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover, .offcanvas a:focus{
+    color: #f1f1f1;
+}
+
+/* Position and style the close button (top right corner) */
+.sidenav .closebtn {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main {
+    transition: margin-left .5s;
+    padding: 20px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 35px;}
+    .sidenav a {font-size: 18px;}
+    .mini-profile {
+     padding: 0px;
+    }
+}
+
+@media only screen and (max-width : 990px) {
+/* Styles */
+  .hidden-small{
+    display: none !important;
+  }
+  .sidenav a {
+     padding: 0px;
+     /*font-size: 18px;*/
+     /*color: #636363;*/
+  }
+  .user-follow.socialite .media-body .media-heading {
+    max-width: 30%;
+  }
+  .mini-profile {
+   padding: 0px !important;
+  }
+  .selectize-input>input {
+    max-width: 100%!important;
+  }
+  .navbar-form .input-group .selectize-input {
+    /*max-width: 50%;*/
+  }
+  .navbar-form .input-group>.form-control {
+     width: 100%;
+  }
+  .navbar-default .navbar-collapse, .navbar-default .navbar-form {
+    border-color: #e7e7e7;
+    display: inline;
+  }
+  .navbar-form .input-group {
+    width: 50%;
+  }
+  .input-group {
+    position: relative;
+    display: inline-flex;
+    border-collapse: separate;
+  }
+  .main-content, .page-wrapper {
+    padding-top: 112px;
+  }
+  .navbar.socialite {
+    height: 108px;
+    border-bottom: 1px solid #e6eaee;
+    position: fixed;
+    width: 100%;
+    z-index: 999;
+  }
+  .notification-list>li>a {
+    padding-top: 19px;
+    padding-bottom: 19px;
+    display: inline-block;
+    text-decoration: none;
+  }
+  .dropdown.message.notification {
+    padding-right: 12px;
+    display: inline-block;
+  }
+  .navbar-right {
+    /*float: right!important;*/
+    margin-right: -15px;
+  }
+  .navbar-nav {
+    /*float: right !important;*/
+    margin: 0px -15px;
+  }
+  .navbar-collapse {
+    width: auto;
+    border-top: 0;
+    box-shadow: none;
+  }
+  .smallscreen-message {
+    display: inline !important;
+  }
+  .selectize-input {
+    min-width: 0px;
+  }
+  .navbar-form {
+    padding: 0px 0px;
+  }
+  .socialite-logo {
+    height: 100%;
+  }
+  .nav>li, .nav>li>a {
+    position: relative;
+    display: inline;
+  }
+  .notification-list {
+    border-right-width: 0;
+    display: inline;
+  }
+  .navbar-toggle {
+    display: inline;
+  }
+  .navbar-default .navbar-collapse, .navbar-default .navbar-form {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .dropdown.message .dropdown-menu {
+    background: #fff;
+  }
+
+}
+
+.notification-list>li .small-screen {
+    display: none;
+}
+
+@media only screen and (min-width : 991px) {
+  .hidden-large{
+    display: none;
+  }
+
+}

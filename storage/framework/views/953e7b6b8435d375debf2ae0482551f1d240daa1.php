@@ -2,18 +2,39 @@
 	<div class="container-fluid">
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-4" aria-expanded="false">
+
+			<!-- <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-4" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button> -->
+
+			<form class="hidden-large navbar-form navbar-left form-left" role="search">
+				<div class="input-group no-margin">
+					<span class="input-group-btn">
+						<button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+					</span>
+					<input type="text" id="navbar-search" data-url="<?php echo e(URL::to('api/v1/timelines')); ?>" class="form-control" placeholder="Search for people, groups and hashtags">
+				</div><!-- /input-group -->
+			</form>
+
+			<a class="navbar-brand socialite" href="<?php echo e(url('/')); ?>">
+				<img class="socialite-logo" src="<?php echo url('setting/'.Setting::get('logo')); ?>" alt="<?php echo e(Setting::get('site_name')); ?>" title="<?php echo e(Setting::get('site_name')); ?>">
+			</a>
+		</div>
+
+		<!-- <div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" onclick="openNav()" data-toggle="collapse" aria-expanded="false">
 				<span class="sr-only">Toggle navigation</span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand socialite" href="<?php echo e(url('/')); ?>">
-				<img class="socialite-logo" src="<?php echo url('setting/'.Setting::get('logo')); ?>" alt="<?php echo e(Setting::get('site_name')); ?>" title="<?php echo e(Setting::get('site_name')); ?>">
-			</a>
-		</div>
-		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-4">
-			<form class="navbar-form navbar-left form-left" role="search">
+		</div> -->
+
+		<div class="navbar-collapse" id="bs-example-navbar-collapse-4">
+			<form class="hidden-small navbar-form navbar-left form-left" role="search">
 				<div class="input-group no-margin">
 					<span class="input-group-btn">
 						<button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
@@ -166,6 +187,14 @@
 	               <!--  <li class="logout">
 	                    <a href="<?php echo e(url('/logout')); ?>"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
 	                </li> -->
+									<li>
+										<button type="button" class="navbar-toggle collapsed" onclick="openNav()" data-toggle="collapse" aria-expanded="false">
+											<span class="sr-only">Toggle navigation</span>
+											<span class="icon-bar"></span>
+											<span class="icon-bar"></span>
+											<span class="icon-bar"></span>
+										</button>
+									</li>
 	            </ul>
 	            <?php endif; ?>
 	        </div><!-- /.navbar-collapse -->

@@ -13,14 +13,14 @@ var vue = new Vue({
         pusher: [],
     },
     created : function() {
-        
+
         $('.dropdown-messages-list').bind('scroll',this.chk_scroll);
 
         // Get if there are any unread notifications or conversations
         this.getNotificationsCounter();
         this.getConversationsCounter();
 
-        // init the pusher 
+        // init the pusher
         this.subscribeToNotificationsChannel();
         this.subscribeToMessagesChannel();
     },
@@ -77,7 +77,7 @@ var vue = new Vue({
                 vm.unreadConversations = vm.unreadConversations + 1;
                 if(vm.conversationsLoaded)
                 {
-                    vm.conversations.data.unshift(data.message);    
+                    vm.conversations.data.unshift(data.message);
                 }
                 vm.notify(data.message.body);
                 jQuery("time.timeago").timeago();
@@ -88,7 +88,7 @@ var vue = new Vue({
             // Lets get the unread notifications once the Vue instance is ready
             this.$http.post(base_url + 'ajax/get-unread-notifications').then(function(response)  {
                 this.unreadNotifications = JSON.parse(response.body).unread_notifications;
-            });    
+            });
         },
         showNotifications : function()
         {
@@ -126,7 +126,7 @@ var vue = new Vue({
                     setTimeout(function(){
                         jQuery("time.timeago").timeago();
                     },10);
-                });                      
+                });
             }
         },
         markNotificationsRead : function()
@@ -138,15 +138,15 @@ var vue = new Vue({
                 $.map(this.notifications, function(notification, key) {
                     vm.notifications[key].seen = true;
                 });
-            });     
+            });
         },
         getConversationsCounter : function()
         {
             // Lets get the unread  messages once the Vue instance is ready
             this.$http.post(base_url + 'ajax/get-unread-messages').then(function(response)  {
                 this.unreadConversations = JSON.parse(response.body).unread_conversations;
-            });    
-            
+            });
+
         },
         showConversations : function()
         {
@@ -161,7 +161,7 @@ var vue = new Vue({
                     this.conversationsLoaded = true;
                     this.conversationsLoading = false;
                 });
-                
+
             }
         },
         getMoreConversations : function()
@@ -182,30 +182,30 @@ var vue = new Vue({
                     $.each(latestConversations.data, function(i, latestConversation) {
                         vm.conversations.data.push(latestConversation);
                     });
-                    
+
                     this.conversationsLoaded = true;
                     this.conversationsLoading = false;
-                    
+
                     setTimeout(function(){
                         jQuery("time.timeago").timeago();
                     },10);
-                });                      
+                });
             }
         },
         chk_scroll : function(e)
         {
             var elem = $(e.currentTarget);
-            if (elem[0].scrollHeight - elem.scrollTop() == elem.outerHeight()) 
+            if (elem[0].scrollHeight - elem.scrollTop() == elem.outerHeight())
             {
                 if(elem.data('type')=="notifications")
                 {
-                    this.getMoreNotifications();    
+                    this.getMoreNotifications();
                 }
                 else
                 {
                     this.getMoreConversations();
                 }
-                
+
             }
         },
         notify: function(message,type,layout)
@@ -224,6 +224,6 @@ var vue = new Vue({
                }
            });
         }
-    }    
+    }
 
 });
