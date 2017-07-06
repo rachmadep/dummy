@@ -18,10 +18,10 @@
 			@if (Auth::guest())
 			<ul class="nav navbar-nav navbar-right">
 				<li class="logout">
-					<a href="{{ url('/about') }}"><i class="fa fa-users" aria-hidden="true"></i> About Us</a>
+					<a href="{{ url('/page/about') }}"><i class="fa fa-users" aria-hidden="true"></i> About Us</a>
 				</li>
 				<li class="logout">
-					<a href="{{ url('/faq') }}"><i class="fa fa-ticket" aria-hidden="true"></i> FAQ</a>
+					<a href="{{ url('/page/faq') }}"><i class="fa fa-ticket" aria-hidden="true"></i> FAQ</a>
 				</li>
 				<li class="logout">
 					<a href="{{ url('/register') }}"><i class="fa fa-sign-in" aria-hidden="true"></i> {{ trans('common.join') }}</a>
@@ -33,7 +33,7 @@
 						<a href="{{ url(Auth::user()->username) }}" class="dropdown-toggle no-padding" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 							<img src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }}" class="img-radius img-30" title="{{ Auth::user()->name }}">
 
-							<span class="user-name">{{ Auth::user()->name }}</span><i class="fa fa-angle-down" aria-hidden="true"></i></a>
+							<span class="user-name">{{ '@'.Auth::user()->username }}</span><i class="fa fa-angle-down" aria-hidden="true"></i></a>
 							<ul class="dropdown-menu">
 								@if(Auth::user()->hasRole('admin'))
 								<li class="{{ Request::segment(1) == 'admin' ? 'active' : '' }}"><a href="{{ url('admin') }}"><i class="fa fa-user-secret" aria-hidden="true"></i>{{ trans('common.admin') }}</a></li>

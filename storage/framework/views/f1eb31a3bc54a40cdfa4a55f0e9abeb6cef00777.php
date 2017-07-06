@@ -2,7 +2,7 @@
   <div class="col-md-12">
     <div class="panel panel-default">
       <div class="panel-heading no-bg panel-settings">
-      	<h3 class="panel-title">
+        <h3 class="panel-title">
       		FAQ
       	</h3>
         <!-- <ul class="list-unstyled no-margin"> -->

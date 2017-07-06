@@ -6,9 +6,9 @@ $(function () {
   $( "h4:contains('Sedih')" ).css( "color", "red" );
   $( "h4:contains('Dalam Krisis')" ).css( "color", "red" );
 
-  $( "select:contains('Senang')" ).css( "color", "green" );
-  $( "select:contains('Baik')" ).css( "color", "#b3b302" );
-  $( "select:contains('Sedih')" ).css( "color", "red" );
+  // $( "select:contains('Senang')" ).css( "color", "green" );
+  // $( "select:contains('Baik')" ).css( "color", "#b3b302" );
+  // $( "select:contains('Sedih')" ).css( "color", "red" );
 
   $('#link_other a').attr('target', '_blank');
     // $.fn.isolatedScroll = function() {
